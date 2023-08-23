@@ -26,6 +26,18 @@ class UserConnection():
         except psycopg.OperationalError as err:
             print(err)
             self.conn.close()
+
+    #mostrar publicaciones segun pais de usuario
+    def read_publications_by_country(self, country):
+        with self.conn.cursos() as cur:
+            data = cur.execute("""
+                SELECT * FROM publications INNER JOIN users ON publications.id = users.id WHERE country = %s
+            """, (country,))
+            return data.fetchall()
+
+    #destructor class
+    def __def__(self):
+        self.conn.close()
     
     def write(self, data):
         with self.conn.cursor() as cur:
