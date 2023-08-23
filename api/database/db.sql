@@ -32,7 +32,6 @@ CREATE TABLE publications(
 publication_id SERIAL PRIMARY KEY,
 publication_date DATE,
 pub_type PUBLICATION_TYPE,
-country VARCHAR(3) NOT NULL,
 city VARCHAR(100) NOT NULL,
 address VARCHAR(100),
 image_publication_id INT NOT NULL,

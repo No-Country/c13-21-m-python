@@ -17,11 +17,10 @@ def get_publications_by_country(country: str):
         item["publication_id"] = data[0]
         item["publication_date"] = data[1]
         item["pub_type"] = data[2]
-        item["country"] = data[3]
-        item["city"] = data[4]
-        item["address"] = data[5]
-        item["image_publication_id"] = data[6]
-        item["pet_id"] = data[7]
-        item["user_id"] = data[8]
+        item["city"] = data[3]
+        item["address"] = data[4]
+        item["image_publication_id"] = data[5]
+        item["pet_id"] = data[6]
+        item["user_id"] = data[7]
         publications.append(item)
     return publications
