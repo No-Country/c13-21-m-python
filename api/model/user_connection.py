@@ -38,3 +38,16 @@ class UserConnection():
     #destructor class
     def __def__(self):
         self.conn.close()
+    
+    def write(self, data):
+        with self.conn.cursor() as cur:
+            cur.execute("""
+                            INSERT INTO "users"(email, pass_user, country) VALUES(%(email)s, %(password)s, %(country)s)
+                        """, data)
+        self.conn.commit()
+    #destructor class
+    def __def__(self):
+        self.conn.close()
+
+
+

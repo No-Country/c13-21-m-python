@@ -1,5 +1,8 @@
 from fastapi import FastAPI
 from model.user_connection import UserConnection
+=======
+from schema.user_schema import UserSchema
+
 
 app = FastAPI()
 conn = UserConnection
@@ -24,3 +27,9 @@ def get_publications_by_country(country: str):
         item["user_id"] = data[7]
         publications.append(item)
     return publications
+=======
+@app.post("/api/user")
+def insert(user_data:UserSchema):
+    data = user_data.dict()
+    data.pop("user_id")
+    conn.write(data)
