@@ -35,6 +35,8 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+local-env
+=======
 # SAM
 samconfig.toml
 .aws-sam/
@@ -292,3 +294,4 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
