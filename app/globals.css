@@ -1,3 +1,75 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.navbar-clear{
+    @apply w-full shadow-md h-20 lg:h-[12vh] sticky top-0 z-50 backdrop-blur-sm bg-black/20 py-4 px-32;
+}
+
+.navbar-clear .menu{
+    @apply flex flex-row justify-center items-center gap-8 text-white
+}
+
+.navbar-clear .inp-search{
+    @apply hidden 
+}
+
+.navbar-clear .btn-login{
+    @apply border-2 border-cyan-500 text-white rounded-md py-2 px-3 hover:bg-black/30 transition-all hover:text-cyan-500
+}
+
+.navbar{
+    @apply w-full h-20 lg:h-[5rem] sticky top-0 z-50 py-4 px-32 bg-white;
+}
+
+.navbar .menu {
+    @apply flex flex-row justify-center items-center gap-8  font-light
+}
+
+.navbar .menu a{
+    @apply relative flex flex-col justify-center items-center hover:text-mainyellow-500 text-gray-500 font-normal
+}
+
+.navbar .menu .dot{
+    @apply hidden
+}
+
+.navbar .menu .active{
+    @apply text-mainyellow-500 font-semibold
+}
+
+.navbar .menu .active .dot{
+    @apply block absolute text-4xl mt-10
+}
+
+.navbar .group-search{
+    @apply flex items-center rounded-full px-3 py-1 w-[15rem] focus:outline-none focus:ring-2 focus:ring-cyan-200 focus:border-transparent transition-all text-gray-700 border-[1px] border-gray-300
+}
+
+.navbar .group-search input{
+    @apply bg-transparent w-full focus:outline-none
+}
+.navbar .btn-login{
+    @apply text-gray-500 rounded-full py-2 px-3 hover:bg-maingreen-50 transition-all hover:text-maingreen-500 text-xl
+}
+
+.btn_homeVerTodos{
+    @apply text-mainpurple-500 rounded-full py-2 px-5 hover:bg-mainpurple-50 transition-all hover:text-mainpurple-600
+}
+
+.carruselSwiper .swiper-button-next, .carruselSwiper .swiper-button-prev{
+    @apply text-maingreen-500 text-sm font-bold bg-white rounded-full w-10 h-10 flex justify-center items-center drop-shadow-md
+}
+.carruselSwiper .swiper-button-next{
+    @apply right-0
+}
+.carruselSwiper .swiper-button-prev{
+    @apply left-0
+}
+.carruselSwiper{
+    --swiper-navigation-size: 15px;
+}
+
+.carrousel-title{
+    @apply text-2xl text-gray-600 font-semibold
+}

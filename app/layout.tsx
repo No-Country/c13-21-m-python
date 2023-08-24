@@ -1,9 +1,15 @@
 import './globals.css'
-import Navbar from '@/components/layout/navbar'
+import type { Metadata } from 'next'
+import { Inter } from 'next/font/google'
 
-export const metadata = {
-  title: 'FastApi',
-  description: '',
+import Navbar from '@components/layout/navbar'
+import Footer from '@components/layout/footer'
+
+const inter = Inter({ subsets: ['latin'] })
+
+export const metadata: Metadata = {
+  title: 'PetFinder',
+  description: 'Mascotas perdidas y en adopción',
 }
 
 export default function RootLayout({
@@ -13,9 +19,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
+      <body className={inter.className}>
         <Navbar />
         {children}
+        <Footer />
       </body>
     </html>
   )
