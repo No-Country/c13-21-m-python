@@ -1,28 +1,26 @@
-/* CREATE DATABASE iF NOT EXISTS petfinderdb; */
-
-/* \c petfinderdb; */
+CREATE DATABASE iF NOT EXISTS petfinderdb;
 
 CREATE TABLE users(
 user_id SERIAL PRIMARY KEY,
 email VARCHAR(150) NOT NULL,
-pass_user VARCHAR(10) NOT NULL,
-country VARCHAR(3) NOT NULL
+pass_user VARCHAR(250) NOT NULL,
+country COUNTRY_ENUM NOT NULL,
+is_Active BOOLEAN DEFAULT true
 );
 
+CREATE TYPE COUNTRY_ENUM AS ENUM ('ARG', 'MX');
 COMMENT ON TABLE users IS 'The users of the application';
 
 CREATE TABLE publications_user(
 publications_user_id SERIAL PRIMARY KEY,
-user_id INT NOT NULL,
-publication_id INT NOT NULL
+user_id INT NOT NULL
 );
 
 COMMENT ON TABLE publications_user IS 'Publications of the users';
 
 CREATE TABLE image_publication(
 image_publication_id SERIAL PRIMARY KEY,
-image VARCHAR(300) NOT NULL,
-publication_id INT NOT NULL
+image TEXT NOT NULL
 );
 
 COMMENT ON TABLE image_publication IS 'Images of the publications';
@@ -43,8 +41,7 @@ COMMENT ON TABLE publications IS 'Publications of pets';
 
 CREATE TABLE colors_pet(
 colors_pet_id SERIAL PRIMARY KEY,
-color VARCHAR(15) NOT NULL,
-pet_id INT NOT NULL
+color VARCHAR(15) NOT NULL
 );
 
 COMMENT ON TABLE colors_pet IS 'Colors of the pets';
@@ -61,8 +58,7 @@ size SIZE_ENUM NOT NULL,
 breed VARCHAR(50) NULL,
 eye_color VARCHAR(20) NOT NULL,
 distinctive_feature TEXT NULL,
-colors_pet_id INT NOT NULL,
-publication_id INT NOT NULL
+colors_pet_id INT NOT NULL
 );
 
 COMMENT ON TABLE pets IS 'Pets';
