@@ -8,4 +8,3 @@ class PublicationUser(Base):
 
     publication_user_id = Column(Integer, primary_key=True, index=True)
     user_id = Column(Integer, ForeignKey("users.user_id"))
-    publication_id = Column(Integer, ForeignKey("publications.publication_id"))

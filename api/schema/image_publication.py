@@ -11,7 +11,6 @@ class ImageInPublicationCreate(ImageInPublicationBase):
 
 class ImagesInPublication(ImageInPublicationBase):
     image_publication_id: int
-    publication_id: int
 
     class Config:
         orm_mode = True

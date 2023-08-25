@@ -11,7 +11,6 @@ class ColorsPetCreate(ColorsPetBase):
 
 class ColorsPet(ColorsPetBase):
     colors_pet_id: int
-    pet_id: int
 
     class Config:
         orm_mode = True

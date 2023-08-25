@@ -8,4 +8,3 @@ class ColorsPet(Base):
 
     colors_pet_id = Column(Integer, primary_key=True, index=True)
     color = Column(String)
-    pet_id = Column(Integer, ForeignKey("pets.pet_id"))

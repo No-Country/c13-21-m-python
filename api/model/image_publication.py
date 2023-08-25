@@ -8,4 +8,3 @@ class ImagePublication(Base):
 
     image_publication_id = Column(Integer, primary_key=True, index=True)
     image = Column(String)
-    publication_id = Column(Integer, ForeignKey("publications.publication_id"))

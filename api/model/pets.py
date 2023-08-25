@@ -16,6 +16,5 @@ class Pets(Base):
     eye_color = Column(String, index=True)
     distinctive_feature = Column(String, index=True)
     colors_pet_id = Column(Integer, ForeignKey("colors_pet.colors_pet_id"))
-    pubication_id = Column(Integer, ForeignKey("publications.publication_id"))
 
     colors = relationship("ColorsPet", back_populates="pets_with_colors")

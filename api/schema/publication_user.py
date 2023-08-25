@@ -12,7 +12,6 @@ class PublicationsByUserCreate(PublicationsByUserBase):
 class PublicationsByUser(PublicationsByUserBase):
     publications_user_id: int
     user_id: int
-    publication_id: int
 
     class Config:
         orm_mode = True

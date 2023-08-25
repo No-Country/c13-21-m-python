@@ -20,7 +20,6 @@ class PetsCreate(PetsBase):
 class Pets(PetsBase):
     pet_id: int
     colors_pet_id: int
-    publication_id: int
     colors: list[ColorsPet]
 
     class Config:
