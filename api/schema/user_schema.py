@@ -1,9 +1,10 @@
 from pydantic import BaseModel, EmailStr
-from pydantic import BaseModel
 from typing import Optional
 
+
 class UserSchema(BaseModel):
-    user_id: Optional[int]
+    user_id: Optional[int] = None
     email: EmailStr
     pass_user: str
     country: str
+    is_active: bool

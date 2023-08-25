@@ -1,5 +1,4 @@
-CREATE TYPE COUNTRY_ENUM AS ENUM ('ARG', 'MX');
-
-ALTER TABLE users ALTER COLUMN country TYPE COUNTRY_ENUM;
-
-ALTER TABLE image_publication ALTER COLUMN image TYPE TEXT;
+DROP TABLE publications_user;
+ALTER TABLE profile RENAME COLUMN province TO address;
+ALTER TABLE profile ALTER COLUMN postal_code TYPE VARCHAR(10);
+ALTER TABLE publications ALTER COLUMN pub_type TYPE VARCHAR(11);
