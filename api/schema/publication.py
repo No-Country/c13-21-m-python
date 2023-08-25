@@ -1,12 +1,15 @@
 from pydantic import BaseModel
+from typing import List
 from schema.image_publication import ImagesInPublication
-from schema.publication_user import PublicationsByUser
+from schema.user import User
 from schema.pets import Pets
 
 
 class PublicationBase(BaseModel):
-    title: str
-    description: str | None = None
+    publication_date: str
+    pub_type: List[str]
+    city: str
+    address: str | None = None
 
 
 class PublicationCreate(PublicationBase):
@@ -14,11 +17,10 @@ class PublicationCreate(PublicationBase):
 
 
 class Publication(PublicationBase):
-    id: int
-    owner_id: int
-    images: list[ImagesInPublication] = []
-    publications_by_user: list[PublicationsByUser] = []
-    pets: list[Pets] = []
+    publication_id: int
+    # images: list[ImagesInPublication] = []
+    # publications_by_user: list[User] = []
+    # pets: list[Pets] = []
 
     class Config:
         orm_mode = True

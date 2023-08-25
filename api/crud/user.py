@@ -15,9 +15,9 @@ def get_users(db: Session, skip: int = 0, limit: int = 100):
     return db.query(User).offset(skip).limit(limit).all()
 
 
-def create_user(db: Session, user: UserCreate):
+def crud_create_user(db: Session, user: UserCreate):
     fake_hashed_password = user.pass_user + "notreallyhashed"
-    db_user = User(email=user.email, hashed_password=fake_hashed_password)
+    db_user = User(email=user.email, pass_user=fake_hashed_password, country=user.country)
     db.add(db_user)
     db.commit()
     db.refresh(db_user)

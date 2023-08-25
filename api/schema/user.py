@@ -3,6 +3,7 @@ from pydantic import BaseModel
 
 class UserBase(BaseModel):
     email: str
+    country: str
 
 
 class UserCreate(UserBase):
@@ -12,7 +13,6 @@ class UserCreate(UserBase):
 class User(UserBase):
     user_id: int
     is_active: bool
-    country: str
 
     class Config:
         orm_mode = True

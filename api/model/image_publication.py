@@ -8,3 +8,5 @@ class ImagePublication(Base):
 
     image_publication_id = Column(Integer, primary_key=True, index=True)
     image = Column(String)
+
+    publications= relationship("Publication")

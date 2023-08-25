@@ -18,3 +18,4 @@ class Pets(Base):
     colors_pet_id = Column(Integer, ForeignKey("colors_pet.colors_pet_id"))
 
     colors = relationship("ColorsPet", back_populates="pets_with_colors")
+    publications= relationship("Publication")
