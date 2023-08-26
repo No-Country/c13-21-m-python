@@ -7,7 +7,8 @@ from sqlalchemy.orm import Session
 #     return db.query(PublicationUser).offset(skip).limit(limit).all()
 
 def get_publications_by_pub_type(db: Session, pub_type: str):
-    return db.query(Publication).filter(Publication.pub_type == pub_type).all()
+    publications = db.query(Publication).filter(Publication.pub_type == pub_type).all()
+    return publications
 
 # def create_publications_by_users(
 #     db: Session, publication: PublicationsByUserCreate, user_id: int
