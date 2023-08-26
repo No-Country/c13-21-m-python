@@ -1,7 +1,12 @@
 from config.database import Base
 from sqlalchemy import Boolean, Column, Date, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship
+from enum import Enum
 
+class PubTypeEnum(str, Enum):
+    perdidos = "Busqueda"
+    encontrados = "Encontrada"
+    adoptados = "Adoptada"
 
 class Publication(Base):
     __tablename__ = "publications"
@@ -16,11 +21,3 @@ class Publication(Base):
     )
     pet_id = Column(Integer, ForeignKey("pets.pet_id"))
     user_id = Column(Integer, ForeignKey("users.user_id"))
-
-    # publications_by_user = relationship(
-    #     "User", back_populates="users_with_publication"
-    # )
-    # images = relationship("ImagePublication")
-    # pets = relationship("Pets")
-
-    users= relationship("User")

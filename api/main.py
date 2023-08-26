@@ -7,6 +7,7 @@ from fastapi import Depends, FastAPI, HTTPException
 from schema.publication import Publication
 from schema.user import User, UserCreate
 from sqlalchemy.orm import Session
+from model.publication import PubTypeEnum
 
 Base.metadata.create_all(bind=engine)
 
@@ -52,9 +53,9 @@ def read_user(user_id: int, db: Session = Depends(get_db)):
 #     items = get_publications_by_users(db, skip=skip, limit=limit)
 #     return items
 
-# @app.get("/publications/{pub_type}", response_model=Publication)
-# def read_publications(pub_type: str, skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
-#     publications = get_publications_by_pub_type(db, pub_type=pub_type)
-#     return publications
+@app.get("/publications/{pub_type}")
+def read_publications(pub_type: PubTypeEnum, skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
+    publications = get_publications_by_pub_type(db, pub_type=pub_type)
+    return publications
 
 
