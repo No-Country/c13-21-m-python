@@ -1,35 +1,61 @@
-from fastapi import FastAPI
-from model.user_connection import UserConnection
-=======
-from schema.user_schema import UserSchema
+from config.database import Base, SessionLocal, engine
+from crud.publication import (
+   get_publications_by_pub_type
+)
+from crud.user import get_user, get_user_by_email, get_users, crud_create_user
+from fastapi import Depends, FastAPI, HTTPException
+from schema.publication import Publication
+from schema.user import User, UserCreate
+from sqlalchemy.orm import Session
+from model.publication import PubTypeEnum
 
+Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
-conn = UserConnection
 
-@app.get("/")
-def root():
-    conn
-    return "Hi, I am FastAPI"
 
-@app.get("/{country}")
-def get_publications_by_country(country: str):
-    publications = {}
-    for data in conn.read_publications_by_country(country):
-        item = {}
-        item["publication_id"] = data[0]
-        item["publication_date"] = data[1]
-        item["pub_type"] = data[2]
-        item["city"] = data[3]
-        item["address"] = data[4]
-        item["image_publication_id"] = data[5]
-        item["pet_id"] = data[6]
-        item["user_id"] = data[7]
-        publications.append(item)
+# Dependency
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
+
+
+@app.post("/users/", response_model=User)
+def create_user(user: UserCreate, db: Session = Depends(get_db)):
+    db_user = get_user_by_email(db, email=user.email)
+    if db_user:
+        raise HTTPException(
+            status_code=400, detail="El Email ya se encuentra registrado"
+        )
+    return crud_create_user(db=db, user=user)
+
+
+@app.get("/users/", response_model=list[User])
+def read_users(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
+    users = get_users(db, skip=skip, limit=limit)
+    return users
+
+
+@app.get("/users/{user_id}", response_model=User)
+def read_user(user_id: int, db: Session = Depends(get_db)):
+    db_user = get_user(db, user_id=user_id)
+    if db_user is None:
+        raise HTTPException(status_code=404, detail="Usuario no encontrado")
+    return db_user
+
+# @app.get("/publications_by_users/", response_model=list[PublicationsByUser])
+# def read_publications_by_users(
+#     skip: int = 0, limit: int = 100, db: Session = Depends(get_db)
+# ):
+#     items = get_publications_by_users(db, skip=skip, limit=limit)
+#     return items
+
+@app.get("/publications/{pub_type}")
+def read_publications(pub_type: PubTypeEnum, skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
+    publications = get_publications_by_pub_type(db, pub_type=pub_type)
     return publications
-=======
-@app.post("/api/user")
-def insert(user_data:UserSchema):
-    data = user_data.dict()
-    data.pop("user_id")
-    conn.write(data)
+
+
