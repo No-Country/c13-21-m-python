@@ -1,6 +1,6 @@
 from config.database import Base, SessionLocal, engine
 from crud.publication import (
-   get_publications_by_pub_type
+   get_publications_by_pub_type, get_publications_by_country
 )
 from crud.user import get_user, get_user_by_email, get_users, crud_create_user
 from fastapi import Depends, FastAPI, HTTPException
@@ -58,4 +58,7 @@ def read_publications(pub_type: PubTypeEnum, skip: int = 0, limit: int = 100, db
     publications = get_publications_by_pub_type(db, pub_type=pub_type)
     return publications
 
-
+@app.get("/publications/{country}")
+def read_publications_by_country(country: str, skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
+    publications = get_publications_by_country(db, country=country)
+    return publications

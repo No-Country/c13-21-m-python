@@ -1,4 +1,5 @@
 from model.publication import Publication
+from model.user import User
 # from schema.publication import Publication
 from sqlalchemy.orm import Session
 
@@ -8,6 +9,10 @@ from sqlalchemy.orm import Session
 
 def get_publications_by_pub_type(db: Session, pub_type: str):
     publications = db.query(Publication).filter(Publication.pub_type == pub_type).all()
+    return publications
+
+def get_publications_by_country(db: Session, country: str):
+    publications = db.query(Publication.user_id).join(User, Publication.user_id == User.user_id).filter(User.country == country).all()
     return publications
 
 # def create_publications_by_users(
