@@ -6,7 +6,7 @@ export default function Footer() {
         <div className="flex flex-row items-center justify-between px-32">
             <div className='text-white gap-y-2'>
                 <img src={logo.src} alt="PetFinder" className="w-[90px] mb-2" />
-                <p> ✉️  <span className='font-bold text-mainyellow-700'>staff@petfinder.com</span></p>
+                <p> ✉️  <span className='font-bold text-color2-700'>staff@petfinder.com</span></p>
                 <p> 📞 <span>(+52) 777 266 95 45</span></p>
                 <p> 🇲🇽 <span>Cuernavaca, Morelos, México</span></p>
             </div>

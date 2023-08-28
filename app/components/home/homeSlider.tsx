@@ -1,12 +1,10 @@
 'use client'
 
 import { useState, useEffect } from "react";
-import { foto1, foto2, foto3, header1, header2 } from "@public/assets";
+import { header1, header2 } from "@public/assets";
 
 import  { BsChevronCompactLeft, BsChevronCompactRight } from 'react-icons/bs';
 import { RxDotFilled } from 'react-icons/rx';
-
-import Image from "next/image";
 
 export default function HomeSlider() {
 
@@ -15,25 +13,15 @@ export default function HomeSlider() {
             id: 1,
             src: header1,
             alt: "foto1",
-            //content: "<div class='absolute px-3 rounded-md max-w-[16ch] text-rigth left-[12rem]'>ADOPTAR CAMBIARÁ <span class=' text-maingreen-400'>SU VIDA</span> Y <span class='text-maingreen-400'>TU VIDA</span>.</div>"
-            content: '<div class="absolute left-[35rem] bottom-[10rem] flex items-center gap-5"><a href="#" class="bg-white text-sm text-mainpurple-500 rounded-full px-4 py-2">Ver perdidos</a><a href="#" class="bg-white text-sm text-mainpurple-500 rounded-full px-4 py-2">Ver encontrados</a><div>'
+            content: '<div class="absolute left-[35rem] bottom-[10rem] flex items-center gap-5"><a href="#" class="bg-white text-sm text-color3-500 rounded-full px-4 py-2">Ver perdidos</a><a href="#" class="bg-white text-sm text-color3-500 rounded-full px-4 py-2">Ver encontrados</a><div>'
         },
         {
             id: 2,
             src: header2,
             alt: "foto2",
-            //content: "<div class='absolute max-w-[16ch] right-[8rem]'>ADOPTA AQUÍ A TU NUEVO <span class='text-maingreen-400'>Mejor amigo</span>.</div>"
-            content: '<div class="absolute left-[35rem] bottom-[10rem] flex items-center gap-5"><a href="#" class="bg-white text-sm text-mainpurple-500 rounded-full px-4 py-2">Ver publicaciones</a><a href="#" class="bg-white text-sm text-mainpurple-500 rounded-full px-4 py-2">Crear publicación</a><div>'
+            content: '<div class="absolute left-[35rem] bottom-[10rem] flex items-center gap-5"><a href="#" class="bg-white text-sm text-color3-500 rounded-full px-4 py-2">Ver publicaciones</a><div>'
         },
-        /*
-        {
-            id: 3,
-            src: foto3,
-            alt: "foto3",
-            content: "<div class='flex mx-auto px-3 rounded-md bg-black/20 items-center'>Lorem ipsum dolor sit amet consectetur.</div>"
-        }
-        */
-    ]
+      ]
 
     const [current, setCurrent] = useState(0)
 

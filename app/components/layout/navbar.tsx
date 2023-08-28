@@ -1,11 +1,10 @@
 'use client';
 
-import { log } from "console";
-// import Image from "next/image";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from 'next/navigation'
 // import { useEffect } from "react";
-// import { logo } from "@public/assets"
+import { logo } from "@public/assets"
 import { AiOutlineUser } from 'react-icons/ai';
 import { CiSearch } from 'react-icons/ci';
 import { BsDot } from 'react-icons/bs';
@@ -20,8 +19,14 @@ export default function Navbar() {
     <div className="navbar">
       <div className="w-[1240px] h-full mx-auto py-1 font-titleFont flex items-center justify-between">
         <div className="flex flex-row items-center">
-          {/* <Image src={logo} className="w-[4rem] mr-3" alt="logo_app" /> */}
-          <Link href="/" className="text-xl font-bold text-maingreen-500">
+          <Image 
+            src={logo.src} 
+            className="w-[25px] mr-1" 
+            alt="logo_app"
+            width={100}
+            height={100}
+          />
+          <Link href="/" className="text-2xl font-bold text-gray-800">
             PetFinder
           </Link>
         </div>
@@ -53,7 +58,7 @@ export default function Navbar() {
           <CiSearch className="search-icon" />
         </div>
               <button className="btn-login flex items-center gap-1">
-                <AiOutlineUser className="text-maingreen-500" />
+                <AiOutlineUser className="text-gray-800" />
               </button>
         </div>
       </div>

@@ -23,11 +23,11 @@
 }
 
 .navbar .menu {
-    @apply flex flex-row justify-center items-center gap-8  font-light
+    @apply flex flex-row justify-center items-center gap-16  font-light
 }
 
 .navbar .menu a{
-    @apply relative flex flex-col justify-center items-center hover:text-mainyellow-500 text-gray-500 font-normal
+    @apply relative flex flex-col justify-center items-center hover:text-color3-500 text-gray-400 font-normal transition-all duration-500
 }
 
 .navbar .menu .dot{
@@ -35,7 +35,7 @@
 }
 
 .navbar .menu .active{
-    @apply text-mainyellow-500 font-semibold
+    @apply text-color3-500 font-semibold
 }
 
 .navbar .menu .active .dot{
@@ -43,22 +43,42 @@
 }
 
 .navbar .group-search{
-    @apply flex items-center rounded-full px-3 py-1 w-[15rem] focus:outline-none focus:ring-2 focus:ring-cyan-200 focus:border-transparent transition-all text-gray-700 border-[1px] border-gray-300
+    @apply flex items-center rounded-full px-3 py-0 w-[15rem] focus:outline-none focus:ring-2 focus:ring-cyan-200 focus:border-transparent transition-all text-gray-700 border-[1px] border-gray-300
+}
+
+.navbar .group-search input{
+    @apply text-sm my-1
 }
 
 .navbar .group-search input{
     @apply bg-transparent w-full focus:outline-none
 }
 .navbar .btn-login{
-    @apply text-gray-500 rounded-full py-2 px-3 hover:bg-maingreen-50 transition-all hover:text-maingreen-500 text-xl
+    @apply text-gray-500 rounded-full py-2 px-3 hover:bg-color3-50 transition-all hover:text-color3-500 text-xl
 }
 
-.btn_homeVerTodos{
-    @apply text-mainpurple-500 rounded-full py-2 px-5 hover:bg-mainpurple-50 transition-all hover:text-mainpurple-600
+/* ****** HOME ****** */
+
+.btn{
+    @apply text-color3-500 rounded-full py-2 px-5 hover:bg-color3-50 transition-all hover:text-color3-600 flex items-center gap-2
+}
+
+.homeSwiper{
+    @apply h-[540px]
+}
+
+
+.homeSwiper .swiper-pagination-bullet{
+    @apply bg-gray-700;
+    opacity: .9;
+}
+
+.homeSwiper .swiper-pagination-bullet-active{
+    @apply bg-color2-500
 }
 
 .carruselSwiper .swiper-button-next, .carruselSwiper .swiper-button-prev{
-    @apply text-maingreen-500 text-sm font-bold bg-white rounded-full w-10 h-10 flex justify-center items-center drop-shadow-md
+    @apply text-color3-500 text-sm font-extrabold bg-white rounded-full w-10 h-10 flex justify-center items-center drop-shadow-md
 }
 .carruselSwiper .swiper-button-next{
     @apply right-0
@@ -73,3 +93,44 @@
 .carrousel-title{
     @apply text-2xl text-gray-600 font-semibold
 }
+
+/* **** PAGE **** */
+
+.pageContainer{
+    @apply w-full h-full flex flex-col items-center
+}
+
+
+.pageContainer .container{
+    @apply w-[1280px]
+}
+
+.page-topbar{
+    @apply flex flex-row justify-between items-center border-y-[1px] border-gray-300 py-2 mb-1
+}
+
+.wrap-atributes{
+    @apply flex items-center gap-2
+}
+
+.atribute{
+    @apply flex items-center border-[1px] border-color3-500 rounded-full text-color3-500 gap-2 text-xs py-1 px-3
+}
+
+.pagination{ 
+    @apply flex flex-row py-16 gap-1
+}
+
+.pagination .btn-pagination{
+    @apply flex items-center py-1 px-3 text-gray-400 transition-all duration-300 cursor-pointer rounded-lg
+}
+
+
+.pagination .active{
+    @apply font-bold text-gray-600 border-[1px] border-color3-50
+}
+
+
+.pagination .btn-pagination:hover{
+    @apply text-color3-500 bg-color3-50
+}   
