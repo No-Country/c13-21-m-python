@@ -13,6 +13,8 @@ export const data = [
             date: '27/08/2023',
             sex: 'female',
             type: 'dog',
+            contact_name: 'Juan Perez',
+            contact_phone: '123456789',
         },
         {
             id: 2,
@@ -26,6 +28,8 @@ export const data = [
             date: '27/08/2023',
             sex: 'female',
             type: 'cat',
+            contact_name: 'Juan Perez',
+            contact_phone: '123456789',
         },
         {
             id: 3,
@@ -39,6 +43,8 @@ export const data = [
             date: '27/08/2023',
             sex: 'male',
             type: 'cat',
+            contact_name: 'Juan Perez',
+            contact_phone: '123456789',
         },
         {
             id: 4,
@@ -52,6 +58,8 @@ export const data = [
             date: '27/08/2023',
             sex: 'female',
             type: 'dog',
+            contact_name: 'Juan Perez',
+            contact_phone: '123456789',
         },
         {
             id: 5,
@@ -65,6 +73,8 @@ export const data = [
             date: '27/08/2023',
             sex: 'female',
             type: 'dog',
+            contact_name: 'Juan Perez',
+            contact_phone: '123456789',
         },
         {
             id: 6,
@@ -78,6 +88,8 @@ export const data = [
             date: '27/08/2023',
             sex: 'female',
             type: 'dog',
+            contact_name: 'Juan Perez',
+            contact_phone: '123456789',
         },
         {
             id: 7,
@@ -91,6 +103,8 @@ export const data = [
             date: '27/08/2023',
             sex: 'female',
             type: 'dog',
+            contact_name: 'Juan Perez',
+            contact_phone: '123456789',
         },
         {
             id: 8,
@@ -104,6 +118,8 @@ export const data = [
             date: '27/08/2023',
             sex: 'female',
             type: 'dog',
+            contact_name: 'Juan Perez',
+            contact_phone: '123456789',
         },
         {
             id: 9,
@@ -117,6 +133,8 @@ export const data = [
             date: '27/08/2023',
             sex: 'female',
             type: 'dog',
+            contact_name: 'Juan Perez',
+            contact_phone: '123456789',
         },
         {
             id: 10,
@@ -130,6 +148,8 @@ export const data = [
             date: '27/08/2023',
             sex: 'female',
             type: 'dog',
+            contact_name: 'Juan Perez',
+            contact_phone: '123456789',
         },
         {
             id: 11,
@@ -143,6 +163,8 @@ export const data = [
             date: '27/08/2023',
             sex: 'female',
             type: 'dog',
+            contact_name: 'Juan Perez',
+            contact_phone: '123456789',
         },
         {
             id: 12,
@@ -156,6 +178,8 @@ export const data = [
             date: '27/08/2023',
             sex: 'female',
             type: 'dog',
+            contact_name: 'Juan Perez',
+            contact_phone: '123456789',
         },
         {
             id: 13,
@@ -169,6 +193,8 @@ export const data = [
             date: '27/08/2023',
             sex: 'female',
             type: 'dog',
+            contact_name: 'Juan Perez',
+            contact_phone: '123456789',
         },
         {
             id: 14,
@@ -182,6 +208,8 @@ export const data = [
             date: '27/08/2023',
             sex: 'female',
             type: 'dog',
+            contact_name: 'Juan Perez',
+            contact_phone: '123456789',
         },
         {
             id: 15,
@@ -195,6 +223,8 @@ export const data = [
             date: '27/08/2023',
             sex: 'female',
             type: 'dog',
+            contact_name: 'Juan Perez',
+            contact_phone: '123456789',
         },
         {
             id: 16,
@@ -208,6 +238,8 @@ export const data = [
             date: '27/08/2023',
             sex: 'female',
             type: 'dog',
+            contact_name: 'Juan Perez',
+            contact_phone: '123456789',
         },
         {
             id: 17,
@@ -221,6 +253,8 @@ export const data = [
             date: '27/08/2023',
             sex: 'female',
             type: 'dog',
+            contact_name: 'Juan Perez',
+            contact_phone: '123456789',
         },
         {
             id: 18,
@@ -234,5 +268,7 @@ export const data = [
             date: '27/08/2023',
             sex: 'female',
             type: 'dog',
+            contact_name: 'Juan Perez',
+            contact_phone: '123456789',
         },
 ]
