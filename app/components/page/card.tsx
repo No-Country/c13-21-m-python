@@ -1,10 +1,13 @@
+'use client';
 import React from "react";
+import { useRouter } from "next/navigation";
+
 import { RiMapPin2Line } from "react-icons/ri";
 import { BsGenderFemale, BsGenderMale } from "react-icons/bs";
 
 import { icon_cat, icon_dog } from "@/public/assets";
 
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 
 interface CardProps {
     data: Array<{
@@ -14,16 +17,22 @@ interface CardProps {
         image: string;
         time: string;
     }>;
-    lblname: boolean;
-    lbllocation: boolean;
-    lbltime: boolean;
-    lbldesc: boolean;
+   
 }
 
-const Card: React.FC<CardProps> = ({ data, lblname, lbllocation, lbltime, lbldesc }) => {
+const Card: React.FC<CardProps> = ({ data }) => {
+
+     const router = useRouter();
+
+    const handleClick = () => {
+        router.push(`/perdidos/${data.id}`);
+    }
 
     return (
-        <div className="w-[32%] cursor-pointer border-[1px] border-gray-300 bg-white rounded-lg shadow-md my-4 flex flex-col">
+        <div
+            onClick={handleClick} 
+            className="w-[32%] cursor-pointer border-[1px] border-gray-300 bg-white rounded-lg shadow-md my-4 flex flex-col hover:border-color3-500 transition duration-300 ease-in-out hover:scale-105 hover:shadow-2xl"
+        >
             <div className="p-4 overflow-hidden flex w-[410px] h-[410px]">
                 <Image 
                     src={data.image} 

@@ -117,6 +117,10 @@
     @apply flex items-center border-[1px] border-color3-500 rounded-full text-color3-500 gap-2 text-xs py-1 px-3
 }
 
+.atribute-lg{
+    @apply flex items-center border-[1px] border-color3-500 rounded-full text-color3-500 gap-2 text-sm py-2 px-3
+}
+
 .pagination{ 
     @apply flex flex-row py-16 gap-1
 }
@@ -133,4 +137,5 @@
 
 .pagination .btn-pagination:hover{
     @apply text-color3-500 bg-color3-50
-}   
+} 
+
