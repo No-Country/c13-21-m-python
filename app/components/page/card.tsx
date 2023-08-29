@@ -10,13 +10,17 @@ import { icon_cat, icon_dog } from "@/public/assets";
 import Image from "next/image";
 
 interface CardProps {
-    data: Array<{
-        id: number;
-        name: string;
-        desc: string;
-        image: string;
-        time: string;
-    }>;
+    data: { 
+            id: number;
+            name: string;
+            type: string;
+            img: string;
+            sex: string;
+            location: string;
+            date: string;
+            fullDescription: string;
+        };
+    key: number;
    
 }
 
@@ -35,7 +39,7 @@ const Card: React.FC<CardProps> = ({ data }) => {
         >
             <div className="p-4 overflow-hidden flex w-[410px] h-[410px]">
                 <Image 
-                    src={data.image} 
+                    src={data.img} 
                     alt={data.name} 
                     className="w-full object-cover rounded-lg overflow-hidden" 
                     priority={false} 

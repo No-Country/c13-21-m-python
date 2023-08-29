@@ -3,7 +3,7 @@ import { Map, Marker } from "pigeon-maps"
 
 export default function MyMap() {
 
-    const handleClick = (e: Event) =>{
+    const handleClick = (e: any) =>{
         console.log(e.latLng);
     } 
 

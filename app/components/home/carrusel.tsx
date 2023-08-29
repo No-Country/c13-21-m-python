@@ -12,15 +12,22 @@ import Link from "next/link";
 
 interface CardProps {
     title: string;
-    data: Array<any>;
+    data: Array<{
+        id: number;
+        name: string;
+        desc: string;
+        img: string;
+        time: string;
+        location: string;
+    }>;
+    link: string;
     lblname: boolean;
     lbllocation: boolean;
     lbltime: boolean;
     lbldesc: boolean;
-    link: string;
 }
 
-const Carrusel: React.FC<CardProps> = ({ title, data, lblname, lbllocation, lbltime, lbldesc, link }) => {
+const Carrusel: React.FC<CardProps> = ({ title, data, link, lblname, lbllocation, lbltime, lbldesc }) => {
 
     return <div className="mx-32 text-center pb-8">
 
@@ -45,14 +52,14 @@ const Carrusel: React.FC<CardProps> = ({ title, data, lblname, lbllocation, lblt
             {
                 data.map((d, index) => (
                     <SwiperSlide key={index}>
-                        <Card 
-                            data={d} 
+                        <Card
+                            data={d}
                             lblname={lblname}
-                            lbllocation={lbllocation} 
-                            lbltime={lbltime} 
+                            lbllocation={lbllocation}
+                            lbltime={lbltime}
                             lbldesc={lbldesc}
-
                         />
+
                     </SwiperSlide>
                 ))
             }
