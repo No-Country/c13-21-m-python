@@ -33,11 +33,13 @@ export default function HomeSlider() {
         setCurrent(current === 0 ? slides.length - 1 : current - 1)
     }
 
+    /*
     useEffect(() => {
         const interval = setInterval(() => handleNextSlide(), 3500);
         return () => clearInterval(interval);
+        // eslint-disable-next-line no-use-before-define
     }, [current])
-
+*/
 
     return <div className="w-[1360px] h-[600px] relative group pb-20">
         <div 
@@ -49,9 +51,9 @@ export default function HomeSlider() {
 
             <div className="flex bottom-4 items-center justify-center py-[.2rem] px-4 rounded-md bg-white/30">
                 {slides.map((slide, index) => (
-                    <div>
+                    <div key={index}>
                         <RxDotFilled 
-                            key={slide.id}
+                            key={index}
                             className={`text-2xl cursor-pointer ${index === current ? "text-maingreen-500" : "text-black"}`}
                             onClick={() => setCurrent(index)}
                         />

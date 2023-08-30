@@ -11,10 +11,10 @@ import { icon_cat, icon_dog } from "@/public/assets";
 import { data}  from '@utils/data';
 import MyMap from "@components/page/map";
 
-export default function Page({ params }: { params: { id: string } }) {
+export default function Page({ params }: { params: any }) {
 
     const router = useRouter();
-    const [state, setState] = useState({});
+    const [state, setState] = useState<any>({});
 
     useEffect(() => {
         
@@ -23,7 +23,8 @@ export default function Page({ params }: { params: { id: string } }) {
 
         setState(filtered[0]);
 
-    }, []);
+        // eslint-disable-next-line no-use-before-define
+    }, [params.id]);
 
     return (
         <div className="pageContainer">
@@ -88,7 +89,7 @@ export default function Page({ params }: { params: { id: string } }) {
                     </div>
                     <div className="w-[60%]">
                         <div className="bg-gray-100 h-[60vh] overflow-hidden flex justify-center items-center rounded-2xl">
-                            <Image src={state.image} alt={state.name} width={500} height={500} className="w-full" />
+                            <Image src={state.img} alt={state.name} width={500} height={500} className="w-full" />
                         </div>
                     </div>
 

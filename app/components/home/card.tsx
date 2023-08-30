@@ -1,18 +1,10 @@
 import React from "react";
-import { IoMdPin } from "react-icons/io";
-import { BsCalendar3 } from "react-icons/bs";
 import { RiMapPin2Line } from "react-icons/ri";
 
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 
 interface CardProps {
-    data: Array<{
-        id: number;
-        name: string;
-        desc: string;
-        image: string;
-        time: string;
-    }>;
+    data: any; 
     lblname: boolean;
     lbllocation: boolean;
     lbltime: boolean;
@@ -21,10 +13,12 @@ interface CardProps {
 
 const Card: React.FC<CardProps> = ({ data, lblname, lbllocation, lbltime, lbldesc }) => {
 
+    console.log(data);
+
     return (
         <div className="cursor-pointer border-[1px] border-gray-300 bg-white p-4 rounded-lg shadow-md my-4 mx-2 ">
             <Image 
-                src={data.image} 
+                src={data.img} 
                 alt={data.name} 
                 className="w-[250px] h-[200px] object-cover rounded-lg" 
                 priority={false} 

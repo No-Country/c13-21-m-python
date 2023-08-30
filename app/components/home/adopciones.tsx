@@ -3,7 +3,8 @@
 import Carrusel from './carrusel';
 import { data } from '@utils/data.js';
 
-export default function Adopciones() {
+
+export default function Adopciones(){
 
     return <Carrusel 
                 title="Adopciones" 
