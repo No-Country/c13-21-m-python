@@ -10,9 +10,10 @@ class Pets(BaseModel):
     size: str
     breed: str
     eye_color: str
-    distinctive_feature: str
+    description: str
     fur: str
     necklace: bool
+    color: str
 
     class Config:
         from_attributes = True
