@@ -11,7 +11,6 @@ AWS_SECRET_KEY = os.environ.get("AWS_SECRET_KEY")
 BUCKET_NAME = os.environ.get("BUCKET_NAME")
 REGION_NAME = os.environ.get("REGION_NAME")
 
-# BUCKET_NAME = "fotos-petfinder-c13-21-m"
 FILE_PATH = "fotos/"
 
 # S3 connect

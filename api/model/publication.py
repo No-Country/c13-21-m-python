@@ -26,7 +26,7 @@ class Publication(Base):
 
     image = relationship("ImagePublication", lazy="joined", back_populates="publications")
     # pet = relationship("PetsModel", lazy="joined", back_populates="publications")
-    # user = relationship("User", lazy="joined")
+    user = relationship("User", lazy="joined")
 
     # pet_publication = relationship("Pets")
     # user_publication = relationship("User")

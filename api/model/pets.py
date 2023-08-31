@@ -14,8 +14,9 @@ class PetsModel(Base):
     size = Column(String, index=True)
     breed = Column(String, index=True)
     eye_color = Column(String, index=True)
-    distinctive_feature = Column(String, index=True)
+    description = Column(String, index=True)
     fur = Column(String)
     necklace = Column(Boolean)
+    color = Column(String)
 
-    publications= relationship("Publication", back_populates="pet", lazy="joined")
+    # publications= relationship("Publication", back_populates="pet", lazy="joined")
