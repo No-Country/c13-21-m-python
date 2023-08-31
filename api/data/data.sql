@@ -37,3 +37,6 @@ INSERT INTO profile (name,phone,state,address,postal_code,user_id) VALUES ('Ramo
 INSERT INTO profile (name,phone,state,address,postal_code,user_id) VALUES ('Ramon Gutierrez','55-56-78-37-34','Buenos Aires','Av Gaona 1584','C1416DRQ',5);
 INSERT INTO profile (name,phone,state,address,postal_code,user_id) VALUES ('Ramon Gutierrez','55-56-78-37-34','Buenos Aires','Av Gaona 1537','C1416DRQ',6);
 INSERT INTO profile (name,phone,state,address,postal_code,user_id) VALUES ('Ramon Gutierrez','55-56-78-37-34','Buenos Aires','Cucha cucha 1035','C1405AIK',7);
+
+select a.id,a.pub_type,a.image_publication_id,b.url,a.pet_id,c.name,c.type,a.user_id,d.email from publications a, image_publication b, pets c, users d where a.image_publication_id=b.id and a.pet_id = c.id and a.user_id=d.id;
+dbpetfinder=# select a.id,a.pub_type,a.image_publication_id,b.url,a.pet_id,c.name,c.type,a.user_id,c.breed, d.email from publications a, image_publication b, pets c, users d where a.image_publication_id=b.id and a.pet_id = c.id and a.user_id=d.id;
