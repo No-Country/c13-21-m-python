@@ -9,7 +9,6 @@ from model.publication import PubTypeEnum
 from typing import List, Dict, Any, Optional
 from routers.publication import publication_router
 from routers.user import user_router
-from routers.color_pet import color_pet_router
 from routers.image_publication import image_publication_router
 from routers.pet import pet_router
 from routers.profile import profile_router
@@ -36,7 +35,6 @@ def page(
 app.include_router(router)
 app.include_router(publication_router, prefix="/api/publications")
 app.include_router(user_router, prefix="/api/users")
-app.include_router(color_pet_router, prefix="/api/colors_pet")
 app.include_router(image_publication_router, prefix="/api/images_publication")
 app.include_router(pet_router, prefix="/api/pets")
 app.include_router(profile_router, prefix="/api/profiles")

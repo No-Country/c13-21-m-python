@@ -24,3 +24,5 @@ update publications set pub_type='perdidos' where id in (1,2,4);
 update publications set pub_type='adoptados' where id in (6,7);
 update publications set pub_type='encontrados' where id =3;
 update publications set pub_type='disponibles' where id =5;
+
+ALTER TABLE profile ALTER COLUMN name DROP NOT NULL;
