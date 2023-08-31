@@ -1,5 +1,4 @@
 from pydantic import BaseModel
-from schema.colors_pet import ColorsPet
 
 
 class Pets(BaseModel):
