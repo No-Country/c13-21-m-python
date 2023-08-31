@@ -6,7 +6,8 @@ from sqlalchemy.orm import relationship
 class ImagePublication(Base):
     __tablename__ = "image_publication"
 
-    image_publication_id = Column(Integer, primary_key=True, index=True)
+    id = Column(Integer, primary_key=True, index=True)
     image = Column(String)
+    url = Column(String)
 
-    publications= relationship("Publication")
+    publications = relationship("Publication", back_populates="image", lazy="joined")
