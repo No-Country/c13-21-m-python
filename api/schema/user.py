@@ -1,5 +1,7 @@
 from pydantic import BaseModel
 from model.user import CountryEnum
+from schema.publication import Publication
+from schema.profile import Profile
 
 
 class User(BaseModel):
@@ -7,6 +9,8 @@ class User(BaseModel):
     email: str
     country: CountryEnum
     is_active: bool
+    publication_user: Publication
+    profile_user: Profile
 
 
     class Config:

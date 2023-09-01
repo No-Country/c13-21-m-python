@@ -1,5 +1,5 @@
 from model.profile import Profile
-from schema.profile import Profile as ProfileSchema, PublicationCreate
+from schema.profile import Profile as ProfileSchema, ProfileCreate
 from sqlalchemy.orm import Session, joinedload
 import datetime
 from utils.pagination import paginate, PageParams

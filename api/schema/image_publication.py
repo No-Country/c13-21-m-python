@@ -5,6 +5,7 @@ class ImageInPublicationBase(BaseModel):
     id: int
     image: str
     url: str
+    publication_id: int
 
     class Config:
         from_attributes = True

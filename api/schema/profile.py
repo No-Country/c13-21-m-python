@@ -1,5 +1,4 @@
 from pydantic import BaseModel
-from schema.user import User
 
 
 class ProfileBase(BaseModel):
@@ -9,7 +8,7 @@ class ProfileBase(BaseModel):
     state: str
     province: str
     postal_code: str
-    user_id: User
+    user_id: int
 
     class Config:
         from_attributes = True

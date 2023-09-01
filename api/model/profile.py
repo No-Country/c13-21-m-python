@@ -12,5 +12,5 @@ class Profile(Base):
     state = Column(String, index=True)
     province = Column(String, index=True)
     postal_code = Column(String, index=True)
-    user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
-
+    user_id = Column(Integer, ForeignKey("users.id"))
+    user_profile = relationship("User", back_populates="profile_user", lazy="joined")

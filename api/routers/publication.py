@@ -1,4 +1,4 @@
-from config.database import get_db
+from main import get_db
 from crud.publication import crud_create, crud_delete, crud_update, get_all, get_by_id
 from fastapi import APIRouter, Body, Depends, Path, status
 from schema.publication import Publication
