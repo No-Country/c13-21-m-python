@@ -1,18 +1,18 @@
 from pydantic import BaseModel
+from model.user import CountryEnum
 
 
-class UserBase(BaseModel):
+class User(BaseModel):
+    id: int
     email: str
-    country: str
-
-
-class UserCreate(UserBase):
-    pass_user: str
-
-
-class User(UserBase):
-    user_id: int
+    country: CountryEnum
     is_active: bool
 
+
     class Config:
-        orm_mode = True
+        from_attributes = True  # Habilita la conversión desde objetos ORM
+        from_orm = True
+
+
+class UserCreate(User):
+    pass_user: str

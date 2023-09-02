@@ -1,8 +1,8 @@
 from pydantic import BaseModel
-from schema.colors_pet import ColorsPet
 
 
-class PetsBase(BaseModel):
+class Pets(BaseModel):
+    id: int
     type: str
     name: str
     age: int
@@ -10,17 +10,11 @@ class PetsBase(BaseModel):
     size: str
     breed: str
     eye_color: str
-    distinctive_feature: str
-
-
-class PetsCreate(PetsBase):
-    pass
-
-
-class Pets(PetsBase):
-    pet_id: int
-    colors_pet_id: int
-    colors: list[ColorsPet]
+    description: str
+    fur: str
+    necklace: bool
+    color: str
 
     class Config:
-        orm_mode = True
+        from_attributes = True
+        from_orm = True

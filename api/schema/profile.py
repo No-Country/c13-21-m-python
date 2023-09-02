@@ -9,6 +9,9 @@ class ProfileBase(BaseModel):
     province: str
     postal_code: str
 
+    class Config:
+        from_attributes = True
+        from_orm = True
 
 class ProfileCreate(ProfileBase):
     pass
@@ -18,6 +21,3 @@ class Profile(ProfileBase):
     profile_id: int
     user_id: int
     users: list[User]
-
-    class Config:
-        orm_mode = True
