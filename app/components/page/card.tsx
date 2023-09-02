@@ -20,16 +20,17 @@ interface CardProps {
             date: string;
             fullDescription: string;
         };
-    key: number;
+        key: number;
+        link: string;
    
 }
 
-const Card: React.FC<CardProps> = ({ data }) => {
+const Card: React.FC<CardProps> = ({ data, link }) => {
 
-     const router = useRouter();
+    const router = useRouter();
 
     const handleClick = () => {
-        router.push(`/perdidos/${data.id}`);
+        router.push(`${link}/${data.id}`);
     }
 
     return (

@@ -62,6 +62,9 @@ module.exports = {
           900: "#160128",
           950: "#0B0014" 
         }
+      },
+      backgroundImage: {
+        'pic-icon': "url('/assets/images/pic_icon.png')",
       }
     },
   },

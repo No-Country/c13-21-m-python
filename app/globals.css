@@ -139,3 +139,65 @@
     @apply text-color3-500 bg-color3-50
 } 
 
+
+/* **** FORM **** */
+
+.postForm{
+    @apply bg-color3-50/20 rounded-xl py-8 px-48 flex flex-col text-gray-500
+}
+
+.postForm h4{
+    @apply text-lg w-full text-gray-700 font-semibold mb-4 mt-4
+}
+
+.postForm .pics{
+    @apply flex gap-4 items-center font-semibold
+}
+.postForm .pic-container{
+    @apply w-16 h-16 bg-slate-50 rounded-sm bg-pic-icon bg-no-repeat bg-center
+}
+
+.postForm .pics-section{
+    @apply flex flex-row justify-between items-center mb-4 border-[1px] border-dashed border-color3-500 rounded-lg py-2 px-3
+}
+
+.postForm .wrap-group{
+    @apply flex items-center justify-between mb-2
+}
+
+.postForm .wrap-group .form-group-3{
+    @apply flex flex-col items-start w-1/3 
+}
+
+.postForm .wrap-group .form-group-1{
+    @apply flex flex-col items-start w-full
+}
+
+.btn-purple{
+    @apply text-white rounded-lg py-1 px-5 bg-color3-500 hover:bg-color3-400 transition-all hover:text-white flex items-center gap-2 font-semibold duration-300
+}
+
+.btn-purple-outline{
+    @apply text-color3-500 rounded-lg py-1 px-5 bg-white hover:bg-color3-400 transition-all hover:text-white flex items-center gap-2 font-semibold duration-300 border-[1px] border-color3-500
+}
+
+/*.postForm .wrap-group .form-group-3 input, .postForm .wrap-group .form-group-3 select{
+    @apply w-[90%]
+}*/
+
+.postForm input, .postForm select, .postForm textarea{
+    @apply w-full bg-transparent focus:outline-none border-[1px] border-gray-400 rounded-lg py-2 px-3 text-gray-700 my-2
+}
+
+.postForm select{
+    @apply px-6;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAUCAMAAACtdX32AAAAdVBMVEUAAAD///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAhMdQaAAAAJ3RSTlMAAAECAwQGBwsOFBwkJTg5RUZ4eYCHkJefpaytrsXGy8zW3+Do8vNn0bsyAAAAYElEQVR42tXROwJDQAAA0Ymw1p9kiT+L5P5HVEi3qJn2lcPjtIuzUIJ/rhIGy762N3XaThqMN1ZPALsZPEzG1x8LrFL77DHBnEMxBewz0fJ6LyFHTPL7xhwzWYrJ9z22AqmQBV757MHfAAAAAElFTkSuQmCC);
+    background-position: 95%;
+    background-repeat: no-repeat;
+}
+
+.postForm textarea{
+    @apply h-52
+}
