@@ -33,6 +33,7 @@
     "typescript": "5.0.4"
   },
   "devDependencies": {
+    "@flydotio/dockerfile": "^0.4.8",
     "@types/leaflet": "^1.9.3"
   }
 }

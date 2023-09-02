@@ -2,6 +2,8 @@ import { BiSlider } from 'react-icons/bi';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
+import Link from 'next/link';
+
 import { data } from '@utils/data';
 import  Card from '@components/page/card';
 
@@ -28,10 +30,13 @@ export default function page() {
                         </button>
                         <span className="lbl-results text-sm text-gray-400">358 Resultados</span>
                     </div>
-                    <button className="btn text-xl font-semibold">
+                    <Link 
+                        href="/post"
+                        className="btn text-xl font-semibold"
+                    >
                         <AiOutlinePlus className="icon-left" />
                         Crear publicación
-                    </button>
+                    </Link>
                 </div>
 
                 <div className='flex flex-row flex-wrap justify-between'>
@@ -40,6 +45,7 @@ export default function page() {
                             <Card 
                                 key={index}
                                 data={item}
+                                link="/perdidos"
                             />
                         ))
                     }

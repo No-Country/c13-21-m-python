@@ -58,6 +58,7 @@ const Carrusel: React.FC<CardProps> = ({ title, data, link, lblname, lbllocation
                             lbllocation={lbllocation}
                             lbltime={lbltime}
                             lbldesc={lbldesc}
+                            link={link}
                         />
 
                     </SwiperSlide>

@@ -88,8 +88,13 @@ export default function Page({ params }: { params: any }) {
 
                     </div>
                     <div className="w-[60%]">
-                        <div className="bg-gray-100 h-[60vh] overflow-hidden flex justify-center items-center rounded-2xl">
-                            <Image src={state.img} alt={state.name} width={500} height={500} className="w-full" />
+                        <div 
+                            className="bg-gray-100 h-[60vh] overflow-hidden flex justify-center items-center rounded-2xl bg-[${state.img}] bg-cover bg-center"
+                            style={{backgroundImage: `url(${state.img})`}}
+                        >
+                            { /* 
+                            <Image src={state.img} alt={state.name} width={500} height={500} className="w-full h-auto" />
+                            */}
                         </div>
                     </div>
 
