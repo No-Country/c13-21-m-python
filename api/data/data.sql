@@ -5,12 +5,12 @@ INSERT INTO users (email,pass_user,country,is_active) values ('pepe.estrada@gmai
 INSERT INTO users (email,pass_user,country,is_active) values ('lachula@gmail.com','Nenax493','ARG',TRUE);
 INSERT INTO users (email,pass_user,country,is_active) values ('paolita.463@gmail.com','VeryGood','ARG',TRUE);
 INSERT INTO users (email,pass_user,country,is_active) values ('eladio.vera@gmail.com','todosSomos','ARG',TRUE);
-INSERT INTO publications (publication_date,pub_type,city,address,status,user_id) VALUES('2023-12-04','perdidos','CDMX','Av. de las Granjas 473, El Jaguey, Azcapotzalco, 02530 Ciudad de México, CDMX','OPEN',1);
-INSERT INTO publications (publication_date,pub_type,city,address,status,user_id) VALUES('2023-07-12','encontrados','Veracruz','C. Madre Selva 773, Dos Caminos, 91726 Veracruz, Ver.','OPEN',2);
-INSERT INTO publications (publication_date,pub_type,city,address,status,user_id) VALUES('2023-12-04','perdidos','Buenos Aires','Av. Tte. Gral. Donato Álvarez 1351, C1416 CABA, Argentina','OPEN',3);
-INSERT INTO publications (publication_date,pub_type,city,address,status,user_id) VALUES('2023-12-04','disponibles','Buenos Aires','Av. Gaona, C1416 CABA, Argentina','OPEN',4);
-INSERT INTO publications (publication_date,pub_type,city,address,status,user_id) VALUES('2023-12-04','adoptados','Buenos Aires','Av. Gaona 1584, C1416 DRQ, Buenos Aires, Argentina','OPEN',5);
-INSERT INTO publications (publication_date,pub_type,city,address,status,user_id) VALUES('2023-12-04','adoptados','Buenos Aires','Av. Gaona 1584, C1416 DRQ, Buenos Aires, Argentina','OPEN',6);
+INSERT INTO publications (publication_date,pub_type,city,address,status,user_id) VALUES('2023-12-04','perdidos','CDMX','Av. de las Granjas 473, El Jaguey, Azcapotzalco, 02530 Ciudad de México, CDMX','abierta',1);
+INSERT INTO publications (publication_date,pub_type,city,address,status,user_id) VALUES('2023-07-12','encontrados','Veracruz','C. Madre Selva 773, Dos Caminos, 91726 Veracruz, Ver.','abierta',2);
+INSERT INTO publications (publication_date,pub_type,city,address,status,user_id) VALUES('2023-12-04','perdidos','Buenos Aires','Av. Tte. Gral. Donato Álvarez 1351, C1416 CABA, Argentina','abierta',3);
+INSERT INTO publications (publication_date,pub_type,city,address,status,user_id) VALUES('2023-12-04','disponibles','Buenos Aires','Av. Gaona, C1416 CABA, Argentina','abierta',4);
+INSERT INTO publications (publication_date,pub_type,city,address,status,user_id) VALUES('2023-12-04','adoptados','Buenos Aires','Av. Gaona 1584, C1416 DRQ, Buenos Aires, Argentina','abierta',5);
+INSERT INTO publications (publication_date,pub_type,city,address,status,user_id) VALUES('2023-12-04','adoptados','Buenos Aires','Av. Gaona 1584, C1416 DRQ, Buenos Aires, Argentina','abierta',6);
 INSERT INTO pets (type,name,age,genre,size,breed,eye_color,description,fur,necklace,color,publication_id) VALUES('Gato','loli',2,'hembra','pequeña','Siames','azul','Nariz pinta miel y cafe','fino',TRUE,'bicolor',1);
 INSERT INTO pets (type,name,age,genre,size,breed,eye_color,description,fur,necklace,color,publication_id) VALUES('Perro','Rufino',2,'macho','mediana','French','cafe','pelo corto','chino',TRUE,'blanco',2);
 INSERT INTO pets (type,name,age,genre,size,breed,eye_color,description,fur,necklace,color,publication_id) VALUES('Perro','Doris',2,'hembra','grande','Pitbull','azul','color cafe con blanco y patas anchas','fino',TRUE,'bicolor',3);
