@@ -17,3 +17,15 @@ class ImagesInPublication(ImageInPublicationBase):
     class Config:
         from_attributes = True
         from_orm = True
+
+
+class ImagesInPublicationSlider(BaseModel):
+    url: str
+
+
+class ImagesInPublicationView(BaseModel):
+    url: str
+
+
+class ImagesInPublicationDetails(BaseModel):
+    url: str

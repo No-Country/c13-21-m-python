@@ -19,8 +19,5 @@ class Pet(Base):
     necklace = Column(Boolean)
     color = Column(String)
 
-
     publication_id = Column(Integer, ForeignKey("publications.id"))
     publication_pet = relationship('Publication', back_populates="pet_publication", lazy="joined", uselist=False)
-    # publications= relationship("Publication", back_populates="pet", lazy="joined")
-

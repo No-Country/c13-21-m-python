@@ -28,3 +28,21 @@ class Pet(PetBase):
     class Config:
         from_attributes = True
         from_orm = True
+
+
+class PetSlider(BaseModel):
+    name: str
+
+
+class PetView(BaseModel):
+    type: str
+    name: str
+    genre: str
+    description: str
+
+
+class PetDetails(BaseModel):
+    type: str
+    name: str
+    genre: str
+    description: str

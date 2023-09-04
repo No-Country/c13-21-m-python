@@ -90,9 +90,39 @@ def get_publication_by_id(id: int = Path(...), db: Session = Depends(get_db)):
     return {"publication": publication}
 
 
-@app.get("/api/publications/perdidos", status_code=status.HTTP_200_OK, response_model=Page[schemaPublication.Publication])
-def get_publications_perdidos(db: Session = Depends(get_db)):
-    return crudPublication.get_perdidos(db)
+@app.get("/api/sliderPerdidos/", status_code=status.HTTP_200_OK, response_model=Page[schemaPublication.PublicationSlider])
+def get_slider_perdidos(db: Session = Depends(get_db)):
+    return crudPublication.get_sliderPerdidos(db)
+
+
+@app.get("/api/sliderEncontrados/", status_code=status.HTTP_200_OK, response_model=Page[schemaPublication.PublicationSlider])
+def get_slider_encontrados(db: Session = Depends(get_db)):
+    return crudPublication.get_sliderEncontrados(db)
+
+
+@app.get("/api/sliderAdopciones/", status_code=status.HTTP_200_OK, response_model=Page[schemaPublication.PublicationSlider])
+def get_slider_adopciones(db: Session = Depends(get_db)):
+    return crudPublication.get_sliderAdopciones(db)
+
+
+@app.get("/api/viewPerdidos/", status_code=status.HTTP_200_OK, response_model=Page[schemaPublication.PublicationView])
+def get_view_perdidos(db: Session = Depends(get_db)):
+    return crudPublication.get_viewPerdidos(db)
+
+
+@app.get("/api/viewEncontrados/", status_code=status.HTTP_200_OK, response_model=Page[schemaPublication.PublicationView])
+def get_view_encontrados(db: Session = Depends(get_db)):
+    return crudPublication.get_viewEncontrados(db)
+
+
+@app.get("/api/viewAdopciones/", status_code=status.HTTP_200_OK, response_model=Page[schemaPublication.PublicationView])
+def get_view_adopciones(db: Session = Depends(get_db)):
+    return crudPublication.get_viewAdopciones(db)
+
+
+#@app.get("/api/detailsPublication/{id}", status_code=status.HTTP_200_OK, response_model=Page[schemaPublication.PublicationDetails])
+#def get_details_publication(id: int, db: Session = Depends(get_db)):
+#    return crudPublication.get_detailsPublication(id, db)
 
  
 @app.get("/api/publications/", status_code=status.HTTP_200_OK, response_model=Page[schemaPublication.Publication])

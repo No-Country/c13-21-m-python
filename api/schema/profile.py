@@ -20,3 +20,8 @@ class Profile(ProfileBase):
     class Config:
         from_attributes = True
         from_orm = True
+
+
+class ProfileDetails(BaseModel):
+    name: str
+    phone: str

@@ -1,8 +1,8 @@
 from typing import List
 from pydantic import BaseModel
 from model.user import CountryEnum
-from schema.publication import Publication
-from schema.profile import Profile
+#from schema.publication import Publication
+from schema.profile import Profile, ProfileDetails
 
 
 class UserBase(BaseModel):
@@ -17,9 +17,14 @@ class UserCreate(UserBase):
 
 class User(UserBase):
     id: int
-    publication_user: List[Publication] = []
+    publication_id: int
+    #publication_user: List[Publication] = []
     profile_user: Profile
 
     class Config:
-        from_attributes = True  # Habilita la conversión desde objetos ORM
+        from_attributes = True
         from_orm = True
+
+
+class UserDetails(BaseModel):
+    profile_user: ProfileDetails
