@@ -15,6 +15,7 @@ class PetBase(BaseModel):
     color: str
 
 
+
 class PetCreate(PetBase):
     pass
 
@@ -22,6 +23,7 @@ class PetCreate(PetBase):
 class Pet(PetBase):
     id: int
     publication_id: int
+
 
     class Config:
         from_attributes = True

@@ -11,8 +11,13 @@ class Publication(Base):
     pub_type = Column(String, index=True)
     city = Column(String, index=True)
     address = Column(String, index=True)
-    status = Column(String, index=True)
-
+    image_publication_id = Column(
+        Integer, ForeignKey("image_publication.id"),nullable=False
+    )
+    pet_id = Column(Integer, ForeignKey("pets.id"), nullable=False)
+    user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
+    status = Column(Enum(PubStatus), index=True)
+    
     pet_publication = relationship("Pet", back_populates="publication_pet", lazy="joined", uselist=False)
     image_publication = relationship("ImagePublication", back_populates="publication_image", lazy="joined")
     user_id = Column(Integer, ForeignKey("users.id"))
