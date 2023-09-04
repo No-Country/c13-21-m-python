@@ -1,5 +1,5 @@
 from config.database import Base
-from sqlalchemy import Boolean, Column, Date, ForeignKey, Integer, String
+from sqlalchemy import Column, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship
 
 
@@ -12,5 +12,6 @@ class Profile(Base):
     state = Column(String, index=True)
     province = Column(String, index=True)
     postal_code = Column(String, index=True)
+
     user_id = Column(Integer, ForeignKey("users.id"))
     user_profile = relationship("User", back_populates="profile_user", lazy="joined")

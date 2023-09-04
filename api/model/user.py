@@ -18,3 +18,4 @@ class User(Base):
     is_active = Column(Boolean, default=True)
     publication_user = relationship("Publication", back_populates="user_publication", lazy="joined")
     profile_user = relationship("Profile", back_populates="user_profile", lazy="joined")
+    

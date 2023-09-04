@@ -1,3 +1,4 @@
+from schema.publication import PubTypeEnum
 from config.database import Base, SessionLocal, engine
 from fastapi import Depends, FastAPI, HTTPException, Query, Path, APIRouter, status, Body
 from sqlalchemy.orm import Session
@@ -7,6 +8,9 @@ from sqlalchemy.orm import Session
 #from routers.pet import pet_router
 #from routers.profile import profile_router
 #from routers.upload import upload_router
+from fastapi_pagination import Page, add_pagination
+from fastapi_pagination.ext.sqlalchemy import paginate 
+from sqlalchemy import select
 
 from crud import image_publication as crudImagePublication, profile as crudProfile, publication as crudPublication, user as crudUser
 from model import image_publication as modelImagePublication, pets as modelPets, profile as modelProfile, publication as modelPublication, user as modelUser
@@ -23,9 +27,9 @@ def get_db():
         db.close()
 
 app = FastAPI()
+add_pagination(app)
 
 router = APIRouter()
-
 
 
 
@@ -93,15 +97,14 @@ def get_publication(id: int = Path(...), db: Session = Depends(get_db)):
     return {"publication": publication}
 
 
-@app.get("/api/publications/", status_code=status.HTTP_200_OK)
+@app.get("/api/publications/{pub_type}", status_code=status.HTTP_200_OK, response_model=Page[schemaPublication.Publication])
+def get_publication_by_type(pub_type:str, db: Session = Depends(get_db)):
+    return crudPublication.get_by_type(pub_type, db)
+
+ 
+@app.get("/api/publications/", status_code=status.HTTP_200_OK, response_model=Page[schemaPublication.Publication])
 def get(db: Session = Depends(get_db)):
-    publications = crudPublication.get_all(db=db)
-    return {"publications": publications}
-    # return {
-    #     "publications": [
-    #         Publication.model_validate(publication) for publication in get_all(db=db)
-    #     ]
-    # }
+    return crudPublication.get_all(db)
 
 
 @app.post("/api/publications/", status_code=status.HTTP_201_CREATED)

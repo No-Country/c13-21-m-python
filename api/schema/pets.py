@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 
+
 class PetBase(BaseModel):
-    id: int
     type: str
     name: str
     age: int
@@ -13,11 +13,6 @@ class PetBase(BaseModel):
     fur: str
     necklace: bool
     color: str
-    publication_id: int
-
-    class Config:
-        from_attributes = True
-        from_orm = True
 
 
 class PetCreate(PetBase):
@@ -25,4 +20,9 @@ class PetCreate(PetBase):
 
 
 class Pet(PetBase):
-    pass
+    id: int
+    publication_id: int
+
+    class Config:
+        from_attributes = True
+        from_orm = True

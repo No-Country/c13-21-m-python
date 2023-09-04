@@ -1,7 +1,6 @@
 from config.database import Base
-from sqlalchemy import Boolean, Column, Date, ForeignKey, Integer, String
+from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship
-from model.publication import Publication
 
 
 class Pet(Base):
@@ -19,5 +18,6 @@ class Pet(Base):
     fur = Column(String)
     necklace = Column(Boolean)
     color = Column(String)
+
     publication_id = Column(Integer, ForeignKey("publications.id"))
-    publication_pet = relationship('Publication', back_populates="pet_publication", lazy="joined")
+    publication_pet = relationship('Publication', back_populates="pet_publication", lazy="joined", uselist=False)

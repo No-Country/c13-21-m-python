@@ -1,5 +1,5 @@
 from config.database import Base
-from sqlalchemy import Boolean, Column, Date, ForeignKey, Integer, String
+from sqlalchemy import Column, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship
 from model.publication import Publication
 
@@ -10,5 +10,6 @@ class ImagePublication(Base):
     id = Column(Integer, primary_key=True, index=True)
     image = Column(String)
     url = Column(String)
+
     publication_id = Column(Integer, ForeignKey("publications.id"))
-    publication_image = relationship(Publication, back_populates="image_publication", lazy="joined")
+    publication_image = relationship(Publication, back_populates="image_publication", lazy="joined", uselist=False)

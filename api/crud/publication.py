@@ -1,3 +1,5 @@
+from sqlalchemy import select
+from schema.publication import PubTypeEnum
 from model.publication import Publication
 from schema.publication import Publication as PublicationSchema, PublicationCreate
 from sqlalchemy.orm import Session, joinedload
@@ -5,6 +7,7 @@ from schema.image_publication import ImagesInPublication
 import datetime
 from utils.pagination import paginate, PageParams
 from fastapi import HTTPException, status
+from fastapi_pagination.ext.sqlalchemy import paginate
 
 
 # def get_publications_by_pub_type(db: Session, skip: int = 0, limit: int = 100):
@@ -17,9 +20,11 @@ def get_by_id(db:Session, id:int):
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
     return publication
 
+def get_by_type(pub_type:str, db:Session):
+    return paginate(db, select(Publication).where(Publication.pub_type==pub_type))
+
 def get_all(db:Session):
-    publications = db.query(Publication).all()
-    return publications
+    return paginate(db, select(Publication))
 
 def crud_create(publication: PublicationSchema, db:Session):
     db_publication = Publication(
