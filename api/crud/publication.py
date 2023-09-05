@@ -23,7 +23,7 @@ def get_sliderEncontrados(db: Session):
 
 
 def get_sliderAdopciones(db: Session):
-    return paginate(db, select(Publication).where(Publication.pub_type=="adopciones").order_by(Publication.publication_date.desc()))
+    return paginate(db, select(Publication).where(Publication.pub_type=="adoptados").order_by(Publication.publication_date.desc()))
 
 
 def get_viewPerdidos(db: Session):
@@ -35,12 +35,18 @@ def get_viewEncontrados(db: Session):
 
 
 def get_viewAdopciones(db: Session):
-    return paginate(db, select(Publication).where(Publication.pub_type=="adopciones").order_by(Publication.publication_date.desc()))
+    return paginate(db, select(Publication).where(Publication.pub_type=="adoptados").order_by(Publication.publication_date.desc()))
 
 
-#def get_detailsPublication(id: int, db: Session):
-#    return paginate(db, db.query(Publication).filter(Publication.id==id))
-#select(Publication).where(Publication.id==id))
+# def get_detailsPublication(id: int, db: Session):
+#     publication = db.query(Publication).get(id)
+
+#     if publication is None:
+#         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
+#     return publication
+
+
+# select(Publication).where(Publication.id==id))
 
 
 def get_all(db:Session):

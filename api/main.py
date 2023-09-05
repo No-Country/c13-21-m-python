@@ -3,11 +3,29 @@ from fastapi import Depends, FastAPI, Query, Path, APIRouter, status, Body
 from sqlalchemy.orm import Session
 from fastapi_pagination import Page, add_pagination
 
-from crud import image_publication as crudImagePublication, profile as crudProfile, publication as crudPublication, user as crudUser
-from model import image_publication as modelImagePublication, pets as modelPets, profile as modelProfile, publication as modelPublication, user as modelUser
-from schema import image_publication as schemaImagePublication, pets as schemaPets, profile as schemaProfile, publication as schemaPublication, user as schemaUser
+from crud import (
+    image_publication as crudImagePublication,
+    profile as crudProfile,
+    publication as crudPublication,
+    user as crudUser,
+)
+from model import (
+    image_publication as modelImagePublication,
+    pets as modelPets,
+    profile as modelProfile,
+    publication as modelPublication,
+    user as modelUser,
+)
+from schema import (
+    image_publication as schemaImagePublication,
+    pets as schemaPets,
+    profile as schemaProfile,
+    publication as schemaPublication,
+    user as schemaUser,
+)
 
 Base.metadata.create_all(bind=engine)
+
 
 # Dependency
 def get_db():
@@ -39,7 +57,10 @@ def get_images(db: Session = Depends(get_db)):
 
 
 @app.post("/api/images_publication/")
-def add_image(image_publication: schemaImagePublication.ImageInPublicationCreate, db: Session = Depends(get_db)):
+def add_image(
+    image_publication: schemaImagePublication.ImageInPublicationCreate,
+    db: Session = Depends(get_db),
+):
     image_publication_result = crudImagePublication.create(image_publication, db)
     return image_publication_result
 
@@ -60,6 +81,8 @@ def delete_image(index: int, db: Session = Depends(get_db)):
 
 # Routers pets
 pet_list = []
+
+
 @app.get("/api/pets/")
 def get_pets():
     return {"pets": pet_list}
@@ -90,42 +113,74 @@ def get_publication_by_id(id: int = Path(...), db: Session = Depends(get_db)):
     return {"publication": publication}
 
 
-@app.get("/api/sliderPerdidos/", status_code=status.HTTP_200_OK, response_model=Page[schemaPublication.PublicationSlider])
+@app.get(
+    "/api/sliderPerdidos/",
+    status_code=status.HTTP_200_OK,
+    response_model=Page[schemaPublication.PublicationSlider],
+)
 def get_slider_perdidos(db: Session = Depends(get_db)):
     return crudPublication.get_sliderPerdidos(db)
 
 
-@app.get("/api/sliderEncontrados/", status_code=status.HTTP_200_OK, response_model=Page[schemaPublication.PublicationSlider])
+@app.get(
+    "/api/sliderEncontrados/",
+    status_code=status.HTTP_200_OK,
+    response_model=Page[schemaPublication.PublicationSlider],
+)
 def get_slider_encontrados(db: Session = Depends(get_db)):
     return crudPublication.get_sliderEncontrados(db)
 
 
-@app.get("/api/sliderAdopciones/", status_code=status.HTTP_200_OK, response_model=Page[schemaPublication.PublicationSlider])
+@app.get(
+    "/api/sliderAdopciones/",
+    status_code=status.HTTP_200_OK,
+    response_model=Page[schemaPublication.PublicationSlider],
+)
 def get_slider_adopciones(db: Session = Depends(get_db)):
     return crudPublication.get_sliderAdopciones(db)
 
 
-@app.get("/api/viewPerdidos/", status_code=status.HTTP_200_OK, response_model=Page[schemaPublication.PublicationView])
+@app.get(
+    "/api/viewPerdidos/",
+    status_code=status.HTTP_200_OK,
+    response_model=Page[schemaPublication.PublicationView],
+)
 def get_view_perdidos(db: Session = Depends(get_db)):
     return crudPublication.get_viewPerdidos(db)
 
 
-@app.get("/api/viewEncontrados/", status_code=status.HTTP_200_OK, response_model=Page[schemaPublication.PublicationView])
+@app.get(
+    "/api/viewEncontrados/",
+    status_code=status.HTTP_200_OK,
+    response_model=Page[schemaPublication.PublicationView],
+)
 def get_view_encontrados(db: Session = Depends(get_db)):
     return crudPublication.get_viewEncontrados(db)
 
 
-@app.get("/api/viewAdopciones/", status_code=status.HTTP_200_OK, response_model=Page[schemaPublication.PublicationView])
+@app.get(
+    "/api/viewAdopciones/",
+    status_code=status.HTTP_200_OK,
+    response_model=Page[schemaPublication.PublicationView],
+)
 def get_view_adopciones(db: Session = Depends(get_db)):
     return crudPublication.get_viewAdopciones(db)
 
 
-#@app.get("/api/detailsPublication/{id}", status_code=status.HTTP_200_OK, response_model=Page[schemaPublication.PublicationDetails])
-#def get_details_publication(id: int, db: Session = Depends(get_db)):
-#    return crudPublication.get_detailsPublication(id, db)
+# @app.get(
+#     "/api/publications/{id}",
+#     status_code=status.HTTP_200_OK,
+#     response_model=schemaPublication.PublicationDetails,
+# )
+# def get_details_publication(id: int = Path(...), db: Session = Depends(get_db)):
+#     return crudPublication.get_detailsPublication(id, db)
 
- 
-@app.get("/api/publications/", status_code=status.HTTP_200_OK, response_model=Page[schemaPublication.Publication])
+
+@app.get(
+    "/api/publications/",
+    status_code=status.HTTP_200_OK,
+    response_model=Page[schemaPublication.Publication],
+)
 def get_publications(db: Session = Depends(get_db)):
     return crudPublication.get_all(db)
 
