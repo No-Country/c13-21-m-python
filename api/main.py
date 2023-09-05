@@ -135,13 +135,13 @@ def get_publications_user(id: int, db: Session = Depends(get_db)):
 
 
 @app.post("/api/users/", status_code=status.HTTP_201_CREATED)
-def add_user(user: schemaUser.User = Body(...), db: Session = Depends(get_db)):
+def add_user(user: schemaUser.UserCreate = Body(...), db: Session = Depends(get_db)):
     user_result = crudUser.create(user, db)
     return {"user": user_result}
 
 
-@app.put("/api/users/{id}", status_code=status.HTTP_200_OK)
-def update_user(id: int = Path(...), user: schemaUser.User = Body(...), db: Session = Depends(get_db)):
+@app.patch("/api/users/{id}", status_code=status.HTTP_200_OK)
+def update_user(id: int = Path(...), user: schemaUser.UserUpdate = Body(...), db: Session = Depends(get_db)):
     user_result = crudUser.update(id, db, user)
     return {"user": user_result}
 
@@ -149,3 +149,16 @@ def update_user(id: int = Path(...), user: schemaUser.User = Body(...), db: Sess
 @app.delete("/api/users/{id}", status_code=status.HTTP_204_NO_CONTENT)
 def delete_user(id: int = Path(...), db: Session = Depends(get_db)):
     crudUser.delete(id, db)
+
+
+#Routers profile
+@app.post("/api/createProfile/", status_code=status.HTTP_201_CREATED)
+def add_profile(profile: schemaProfile.ProfileCreate = Body(...), db: Session = Depends(get_db)):
+    profile_result = crudProfile.create(profile, db)
+    return {"profile": profile_result}
+
+
+@app.patch("/api/profile/{id}", status_code=status.HTTP_200_OK)
+def update_profile(id: int = Path(...), profile: schemaProfile.ProfileUpdate = Body(...), db: Session = Depends(get_db)):
+    profile_result = crudProfile.update(id, db, profile)
+    return {"profile": profile_result}
