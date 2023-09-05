@@ -1,11 +1,11 @@
 from config.database import Base
-from sqlalchemy import Boolean, Column, Date, ForeignKey, Integer, String
+from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship
 
 
-class PetsModel(Base):
+class Pet(Base):
     __tablename__ = "pets"
-
+    
     id = Column(Integer, primary_key=True, index=True)
     type = Column(String, index=True)
     name = Column(String, index=True)
@@ -19,4 +19,5 @@ class PetsModel(Base):
     necklace = Column(Boolean)
     color = Column(String)
 
-    # publications= relationship("Publication", back_populates="pet", lazy="joined")
+    publication_id = Column(Integer, ForeignKey("publications.id"))
+    publication_pet = relationship('Publication', back_populates="pet_publication", lazy="joined", uselist=False)

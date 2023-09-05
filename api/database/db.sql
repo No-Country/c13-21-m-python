@@ -5,7 +5,8 @@ id SERIAL PRIMARY KEY,
 email VARCHAR(150) NOT NULL,
 pass_user VARCHAR(250) NOT NULL,
 country VARCHAR(3) NOT NULL,
-is_Active BOOLEAN DEFAULT true
+is_Active BOOLEAN DEFAULT true,
+publication_id INT NOT NULL
 );
 
 COMMENT ON TABLE users IS 'The users of the application';
@@ -13,7 +14,8 @@ COMMENT ON TABLE users IS 'The users of the application';
 CREATE TABLE image_publication(
 id SERIAL PRIMARY KEY,
 image VARCHAR(100) NOT NULL,
-url VARCHAR(200) NOT NULL
+url VARCHAR(200) NOT NULL,
+publication_id INT NOT NULL
 );
 
 COMMENT ON TABLE image_publication IS 'Images of the publications';
@@ -24,9 +26,6 @@ publication_date DATE,
 pub_type VARCHAR(11),
 city VARCHAR(100) NOT NULL,
 address VARCHAR(100),
-image_publication_id INT NOT NULL,
-pet_id INT NOT NULL,
-user_id INT NOT NULL,
 status VARCHAR(7) DEFAULT 'OPEN'
 );
 
@@ -34,7 +33,7 @@ COMMENT ON TABLE publications IS 'Publications of pets';
 
 CREATE TABLE pets(
 id SERIAL PRIMARY KEY,
-type VARCHAR(150) NOT NULL,
+type VARCHAR(20) NOT NULL,
 name VARCHAR(100) NULL,
 age INT NULL,
 genre VARCHAR(6) NOT NULL,
@@ -44,7 +43,8 @@ eye_color VARCHAR(8) NOT NULL,
 description TEXT NULL,
 fur VARCHAR(10) NULL,
 necklace BOOLEAN DEFAULT true,
-color VARCHAR(8) NOT NULL
+color VARCHAR(8) NOT NULL,
+publication_id INT NOT NULL
 );
 
 COMMENT ON TABLE pets IS 'Pets';
@@ -54,15 +54,15 @@ id SERIAL PRIMARY KEY,
 name VARCHAR(150) NULL,
 phone VARCHAR(50) NULL,
 state VARCHAR(50) NULL,
-address VARCHAR(100) NULL,
+province VARCHAR(100) NULL,
 postal_code VARCHAR(10) NULL,
 user_id INT NOT NULL
 );
 
 COMMENT ON TABLE profile IS 'User Profile';
 
-ALTER TABLE publications ADD FOREIGN KEY (image_publication_id) REFERENCES image_publication(id) ON UPDATE CASCADE ON DELETE RESTRICT;
-ALTER TABLE publications ADD FOREIGN KEY (pet_id) REFERENCES pets(id) ON UPDATE CASCADE ON DELETE RESTRICT;
-ALTER TABLE publications ADD FOREIGN KEY (user_id) REFERENCES users(id) ON UPDATE CASCADE ON DELETE RESTRICT;
+ALTER TABLE pets ADD FOREIGN KEY (publication_id) REFERENCES publications(id) ON UPDATE CASCADE ON DELETE RESTRICT;
+ALTER TABLE users ADD FOREIGN KEY (publication_id) REFERENCES publications(id) ON UPDATE CASCADE ON DELETE RESTRICT;
+ALTER TABLE image_publication ADD FOREIGN KEY (publication_id) REFERENCES publications(id) ON UPDATE CASCADE ON DELETE RESTRICT;
 
 ALTER TABLE profile ADD FOREIGN KEY (user_id) REFERENCES users(id) ON UPDATE CASCADE ON DELETE RESTRICT;

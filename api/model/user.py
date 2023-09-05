@@ -16,5 +16,8 @@ class User(Base):
     pass_user = Column(String)
     country = Column(String)
     is_active = Column(Boolean, default=True)
-
-    # publications= relationship("Publication")
+    
+    publication_id = Column(Integer, ForeignKey("publications.id"))
+    publication_user = relationship("Publication", back_populates="user_publication", lazy="joined")
+    profile_user = relationship("Profile", back_populates="user_profile", lazy="joined")
+    

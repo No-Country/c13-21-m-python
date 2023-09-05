@@ -1,14 +1,9 @@
-from pydantic import BaseModel, HttpUrl
+from pydantic import BaseModel
 
 
 class ImageInPublicationBase(BaseModel):
-    id: int
     image: str
     url: str
-
-    class Config:
-        from_attributes = True
-        from_orm = True
 
 
 class ImageInPublicationCreate(ImageInPublicationBase):
@@ -16,4 +11,21 @@ class ImageInPublicationCreate(ImageInPublicationBase):
 
 
 class ImagesInPublication(ImageInPublicationBase):
-    pass
+    id: int
+    publication_id: int
+
+    class Config:
+        from_attributes = True
+        from_orm = True
+
+
+class ImagesInPublicationSlider(BaseModel):
+    url: str
+
+
+class ImagesInPublicationView(BaseModel):
+    url: str
+
+
+class ImagesInPublicationDetails(BaseModel):
+    url: str
