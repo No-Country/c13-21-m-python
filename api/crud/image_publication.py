@@ -1,41 +1,41 @@
 from model.image_publication import ImagePublication
-from schema.publication import Publication as PublicationSchema, PublicationCreate
-from schema.image_publication import ImageInPublicationCreate
-from sqlalchemy.orm import Session, joinedload
-from schema.image_publication import ImagesInPublication
-import datetime
-
-# def get_publications_by_pub_type(db: Session, skip: int = 0, limit: int = 100):
-#     return db.query(PublicationUser).offset(skip).limit(limit).all()
-
-def get_by_id(db:Session, id:int):
-    publication = db.query(ImagePublication).get(id)
-    return publication
-
-def get_all(db:Session):
-    publications = db.query(ImagePublication).all()
-    return publications
-
-def create(image_publication: ImageInPublicationCreate, db:Session):
-    image_publication_db = ImagePublication(
-        # publication_date = datetime.date.isoformat(publication.publication_date)
-        image = image_publication.image,
-        url = image_publication.url,
-    )
-    db.add(image_publication_db)
+from schema.image_publication import ImageInPublicationCreate, ImageInPublicationUpdate
+from fastapi import HTTPException, status
+from sqlalchemy.orm import Session
 
 
+def get_by_id(id:int, db:Session):
+    image_publication = db.query(ImagePublication).get(id)
+
+    if image_publication is None:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
+    return image_publication
 
 
-    # images = db.query(ImagePublication).filter(ImagePublication.image_publication_id == Publication.image_publication_id).all()
-    # publications_with_images["image_publication_id"] = images
-    # return publications_with_images
+def create(image: ImageInPublicationCreate):
+    db_image_publication = ImagePublication(
+        image = image.image,
+        url = image.url
+        )
+    return db_image_publication
 
-# def create_publications_by_users(
-#     db: Session, publication: PublicationsByUserCreate, user_id: int
-# ):
-#     db_publication_by_user = PublicationUser(**publication.dict(), owner_id=user_id)
-#     db.add(db_publication_by_user)
-#     db.commit()
-#     db.refresh(db_publication_by_user)
-#     return db_publication_by_user
+
+def update(image: ImageInPublicationUpdate):
+    db_image_publication = ImagePublication(
+        image = image.image,
+        url = image.url
+        )
+    return db_image_publication
+
+
+def update(id: int, db: Session, image_publication: ImageInPublicationUpdate):
+    db_image_publication = get_by_id(id, db)
+    if not db_image_publication:
+         raise HTTPException(status_code=404, detail="Image not found")
+    image_publication_data = image_publication.dict(exclude_unset=True)
+    for key, value in image_publication_data.items():
+         setattr(db_image_publication, key, value)
+    db.add(db_image_publication)
+    db.commit()
+    db.refresh(db_image_publication)
+    return db_image_publication

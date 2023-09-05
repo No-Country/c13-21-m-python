@@ -19,7 +19,7 @@ class User(UserBase):
     id: int
     publication_id: int
     #publication_user: List[Publication] = []
-    profile_user: Profile
+    #profile_user: Profile
 
     class Config:
         from_attributes = True

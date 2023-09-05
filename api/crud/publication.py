@@ -4,9 +4,10 @@ from schema.publication import PublicationUpdate, Publication as PublicationSche
 from sqlalchemy.orm import Session
 from fastapi import HTTPException, status
 from fastapi_pagination.ext.sqlalchemy import paginate
+from crud import pets as crudPets
 
 
-def get_by_id(db:Session, id:int):
+def get_by_id(id:int, db:Session):
     publication = db.query(Publication).get(id)
 
     if publication is None:
@@ -49,11 +50,14 @@ def get_all(db:Session):
 
 def create(publication: PublicationCreate, db:Session):
     db_publication = Publication(
-        publication_date = publication.date,
+        publication_date = publication.publication_date,
         pub_type = publication.pub_type,
         city = publication.city,
         address = publication.address,
         status = publication.status,
+        pet_publication = crudPets.create(publication.pet_publication)
+        #image_publication = crudImagePublication.create(publication.image_publication)
+        #user_publication = this.user???
     )
     db.add(db_publication)
     db.commit()
@@ -61,12 +65,13 @@ def create(publication: PublicationCreate, db:Session):
     return db_publication
 
 
-def update(
-        id: int,
-        db: Session,
-        publication: PublicationUpdate
-        ):
+def update(id: int, db: Session, publication: PublicationUpdate):
     db_publication = get_by_id(id, db)
+    if not db_publication:
+         raise HTTPException(status_code=404, detail="Publication not found")
+    publication_data = publication.dict(exclude_unset=True)
+    for key, value in publication_data.items():
+         setattr(db_publication, key, value)
     db.add(db_publication)
     db.commit()
     db.refresh(db_publication)

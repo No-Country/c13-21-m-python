@@ -1,3 +1,4 @@
+from typing import Optional
 from pydantic import BaseModel
 
 
@@ -17,6 +18,11 @@ class ImagesInPublication(ImageInPublicationBase):
     class Config:
         from_attributes = True
         from_orm = True
+
+
+class ImageInPublicationUpdate(BaseModel):
+    image: Optional[str] = None
+    url: Optional[str] = None
 
 
 class ImagesInPublicationSlider(BaseModel):
