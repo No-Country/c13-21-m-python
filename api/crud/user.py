@@ -22,7 +22,7 @@ def get_by_email(email: str, db: Session):
 
 
 def get_all(db: Session, skip: int = 0, limit: int = 100):
-    users = get_all(db=db)
+    users = get_all(db)
     return users
 
 
@@ -34,7 +34,7 @@ def get_publications(id:int, db:Session):
     return publications
 
 
-def create(db: Session, user: UserCreate):
+def create(user: UserCreate, db: Session):
     fake_hashed_password = user.pass_user + "notreallyhashed"
     db_user = User(
         email=user.email, pass_user=fake_hashed_password, country=user.country
