@@ -6,6 +6,14 @@ from fastapi_pagination import Page, add_pagination
 from crud import image_publication as crudImagePublication, profile as crudProfile, publication as crudPublication, user as crudUser, pets as crudPet
 from model import image_publication as modelImagePublication, pets as modelPets, profile as modelProfile, publication as modelPublication, user as modelUser
 from schema import image_publication as schemaImagePublication, pets as schemaPets, profile as schemaProfile, publication as schemaPublication, user as schemaUser
+from fastapi_cognito import CognitoAuth, CognitoSettings
+from schema.userpool import settings
+from fastapi_cognito import CognitoToken
+
+# default userpool(eu) will be used if there is no userpool_name param provided.
+cognito_us = CognitoAuth(
+  settings=CognitoSettings.from_global_settings(settings), userpool_name="petfinder-userpool"
+)
 
 Base.metadata.create_all(bind=engine)
 
@@ -186,7 +194,7 @@ def delete_user(id: int = Path(...), db: Session = Depends(get_db)):
 
 #Routers profile
 @app.post("/api/createProfile/", status_code=status.HTTP_201_CREATED)
-def add_profile(profile: schemaProfile.ProfileCreate = Body(...), db: Session = Depends(get_db)):
+def add_profile(auth: CognitoToken = Depends(cognito_us.auth_required), profile: schemaProfile.ProfileCreate = Body(...), db: Session = Depends(get_db)):
     profile_result = crudProfile.create(profile, db)
     return {"profile": profile_result}
 
