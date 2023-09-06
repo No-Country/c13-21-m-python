@@ -1,8 +1,8 @@
 from pydantic import BaseModel
 from typing import List, Optional
-from schema.user import UserDetails
+from schema.user import User, UserDetails
 from schema.image_publication import ImagesInPublication, ImagesInPublicationSlider, ImagesInPublicationView, ImagesInPublicationDetails
-from schema.pets import Pet, PetSlider, PetView, PetDetails
+from schema.pets import Pet, PetSlider, PetView, PetDetails, PetCreate
 from enum import Enum
 import datetime
 
@@ -28,15 +28,15 @@ class PublicationBase(BaseModel):
 
 
 class PublicationCreate(PublicationBase):
-    pass
+    pet_publication: PetCreate
+    #image_publication: List[ImagesInPublicationCreate] = []
 
 
 class Publication(PublicationBase):
     id: int
     pet_publication: Pet
     image_publication: List[ImagesInPublication] = []
-    #user_id: int
-    #user: User
+    user_publication: User
 
     class Config:
         from_attributes = True
@@ -44,11 +44,11 @@ class Publication(PublicationBase):
 
 
 class PublicationUpdate(BaseModel):
-    publication_date: Optional[datetime.date]
-    pub_type: Optional[str]
-    city: Optional[str]
-    address: Optional[str]
-    status: Optional[PubStatus]
+    publication_date: Optional[datetime.date] = None
+    pub_type: Optional[str] = None
+    city: Optional[str] = None
+    address: Optional[str] = None
+    status: Optional[PubStatus] = None
 
 
 class PublicationSlider(BaseModel):

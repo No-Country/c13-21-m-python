@@ -1,3 +1,4 @@
+from typing import Optional
 from pydantic import BaseModel
 
 
@@ -25,3 +26,11 @@ class Profile(ProfileBase):
 class ProfileDetails(BaseModel):
     name: str
     phone: str
+
+
+class ProfileUpdate(BaseModel):
+    name: Optional[str]
+    phone: Optional[str]
+    state: Optional[str]
+    province: Optional[str]
+    postal_code: Optional[str]

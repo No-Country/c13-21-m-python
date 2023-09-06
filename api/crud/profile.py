@@ -1,12 +1,10 @@
 from model.profile import Profile
-from schema.profile import Profile as ProfileSchema, ProfileCreate
-from sqlalchemy.orm import Session, joinedload
-import datetime
-from utils.pagination import paginate, PageParams
+from schema.profile import Profile as ProfileSchema, ProfileCreate, ProfileUpdate
+from sqlalchemy.orm import Session
 from fastapi import HTTPException, status
 
 
-def get_profile_by_id(db:Session, id:int):
+def get_by_id(id: int, db:Session):
     profile = db.query(Profile).get(id)
 
     if profile is None:
@@ -14,14 +12,13 @@ def get_profile_by_id(db:Session, id:int):
     return profile
 
 
-def profile_create(profile: ProfileSchema, db:Session):
+def create(profile: ProfileCreate, db:Session):
     db_profile = Profile(
         name = profile.name,
         phone = profile.phone,
         state = profile.state,
         province = profile.province,
         postal_code = profile.postal_code,
-        user_id = profile.user_id
     )
     db.add(db_profile)
     db.commit()
@@ -29,8 +26,13 @@ def profile_create(profile: ProfileSchema, db:Session):
     return db_profile
 
 
-def profile_update(id: int, db: Session, publication: ProfileSchema):
-    db_profile = get_profile_by_id(id=id, db=db)
+def update(id: int, db: Session, profile: ProfileUpdate):
+    db_profile = get_by_id(id, db)
+    if not db_profile:
+         raise HTTPException(status_code=404, detail="Profile not found")
+    profile_data = profile.dict(exclude_unset=True)
+    for key, value in profile_data.items():
+         setattr(db_profile, key, value)
     db.add(db_profile)
     db.commit()
     db.refresh(db_profile)

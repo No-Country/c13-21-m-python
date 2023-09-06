@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Optional
 from pydantic import BaseModel
 from model.user import CountryEnum
 #from schema.publication import Publication
@@ -19,7 +19,7 @@ class User(UserBase):
     id: int
     publication_id: int
     #publication_user: List[Publication] = []
-    profile_user: Profile
+    #profile_user: Profile
 
     class Config:
         from_attributes = True
@@ -28,3 +28,8 @@ class User(UserBase):
 
 class UserDetails(BaseModel):
     profile_user: ProfileDetails
+
+
+class UserUpdate(BaseModel):
+    email: Optional[str]
+    country: Optional[CountryEnum]
