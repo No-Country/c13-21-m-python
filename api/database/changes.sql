@@ -27,3 +27,5 @@ update publications set pub_type='disponibles' where id =5;
 
 ALTER TABLE profile ALTER COLUMN name DROP NOT NULL;
 ALTER TABLE profile RENAME COLUMN address TO province;
+
+ALTER TABLE users DROP COLUMN pass_user;

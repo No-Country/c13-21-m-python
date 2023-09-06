@@ -1,3 +1,4 @@
+from typing import Optional
 from pydantic import BaseModel
 
 
@@ -15,7 +16,6 @@ class PetBase(BaseModel):
     color: str
 
 
-
 class PetCreate(PetBase):
     pass
 
@@ -28,6 +28,20 @@ class Pet(PetBase):
     class Config:
         from_attributes = True
         from_orm = True
+
+
+class PetUpdate(BaseModel):
+    type: Optional[str] = None
+    name: Optional[str] = None
+    age: Optional[int] = None
+    genre: Optional[str] = None
+    size: Optional[str] = None
+    breed: Optional[str] = None
+    eye_color: Optional[str] = None
+    description: Optional[str] = None
+    fur: Optional[str] = None
+    necklace: Optional[bool] = None
+    color: Optional[str] = None
 
 
 class PetSlider(BaseModel):
