@@ -4,6 +4,10 @@ from botocore.exceptions import NoCredentialsError
 import faker
 import datetime
 import os
+from sqlalchemy.orm import Session
+from schema.image_publication import ImageInPublicationCreate
+from model.image_publication import ImagePublication
+
 
 # Constants from environment variables
 AWS_ACCESS_KEY = os.environ.get("AWS_ACCESS_KEY")
@@ -52,8 +56,8 @@ def genera_aleatorio():
 #         }
 
 
-@upload_router.post("/file")
-async def upload_uploadfile(file: UploadFile = File(...)):
+# @upload_router.post("/file")
+def upload_image(file: UploadFile, db):
     # with open(file_name, "wb") as buffer:
     #     shutil.copyfileobj(file.file, buffer)
     try:
@@ -75,16 +79,12 @@ async def upload_uploadfile(file: UploadFile = File(...)):
             s3.upload_fileobj(
                 file.file, BUCKET_NAME, file_name, ExtraArgs={"ACL": "public-read"}
             )
-            url_image = (
+            url = (
                 f"https://{BUCKET_NAME}.s3.{REGION_NAME}.amazonaws.com/{file_name}"
             )
-            image_name = str(file.filename)
+            image = str(file.filename)
 
-            return {
-                "message": "Archivo subido exitosamente",
-                "image": image_name,
-                "url_file": url_image,
-            }
+            return image, url
         else:
             return {"message": "El archivo no es una imagen válida"}
     except NoCredentialsError:

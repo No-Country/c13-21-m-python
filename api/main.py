@@ -1,19 +1,50 @@
 from config.database import Base, SessionLocal, engine
-from fastapi import Depends, FastAPI, Query, Path, APIRouter, status, Body
+from fastapi import (
+    Depends,
+    FastAPI,
+    Query,
+    Path,
+    APIRouter,
+    status,
+    Body,
+    HTTPException,
+    File,
+    UploadFile,
+)
 from sqlalchemy.orm import Session
 from fastapi_pagination import Page, add_pagination
 
-from crud import image_publication as crudImagePublication, profile as crudProfile, publication as crudPublication, user as crudUser, pets as crudPet
-from model import image_publication as modelImagePublication, pets as modelPets, profile as modelProfile, publication as modelPublication, user as modelUser
-from schema import image_publication as schemaImagePublication, pets as schemaPets, profile as schemaProfile, publication as schemaPublication, user as schemaUser
-from fastapi_cognito import CognitoAuth, CognitoSettings
-from schema.userpool import settings
-from fastapi_cognito import CognitoToken
+from crud import (
+    image_publication as crudImagePublication,
+    profile as crudProfile,
+    publication as crudPublication,
+    user as crudUser,
+    pets as crudPet,
+    upload as crudUpload,
+)
+from model import (
+    image_publication as modelImagePublication,
+    pets as modelPets,
+    profile as modelProfile,
+    publication as modelPublication,
+    user as modelUser,
+)
+from schema import (
+    image_publication as schemaImagePublication,
+    pets as schemaPets,
+    profile as schemaProfile,
+    publication as schemaPublication,
+    user as schemaUser,
+)
+
+# from fastapi_cognito import CognitoAuth, CognitoSettings
+# from schema.userpool import settings
+# from fastapi_cognito import CognitoToken
 
 # default userpool(eu) will be used if there is no userpool_name param provided.
-cognito_us = CognitoAuth(
-  settings=CognitoSettings.from_global_settings(settings), userpool_name="petfinder-userpool"
-)
+# cognito_us = CognitoAuth(
+#   settings=CognitoSettings.from_global_settings(settings), userpool_name="petfinder-userpool"
+# )
 
 Base.metadata.create_all(bind=engine)
 
@@ -34,7 +65,7 @@ add_pagination(app)
 router = APIRouter()
 
 
-#Routers image_publication
+# Routers image_publication
 @app.get("/api/imagePublication/{id}", status_code=status.HTTP_200_OK)
 def get_imagePublication_by_id(id: int = Path(...), db: Session = Depends(get_db)):
     image_publication = crudImagePublication.get_by_id(id, db)
@@ -42,12 +73,16 @@ def get_imagePublication_by_id(id: int = Path(...), db: Session = Depends(get_db
 
 
 @app.patch("/api/imagePublication/{id}", status_code=status.HTTP_200_OK)
-def update_image_publication(id: int = Path(...), image_publication: schemaImagePublication.ImageInPublicationUpdate = Body(...), db: Session = Depends(get_db)):
+def update_image_publication(
+    id: int = Path(...),
+    image_publication: schemaImagePublication.ImageInPublicationUpdate = Body(...),
+    db: Session = Depends(get_db),
+):
     image_publication_result = crudImagePublication.update(id, db, image_publication)
     return {"image_publication": image_publication_result}
 
 
-#Routers pet
+# Routers pet
 @app.get("/api/pets/{id}", status_code=status.HTTP_200_OK)
 def get_pet_by_id(id: int = Path(...), db: Session = Depends(get_db)):
     pet = crudPet.get_by_id(id, db)
@@ -55,7 +90,11 @@ def get_pet_by_id(id: int = Path(...), db: Session = Depends(get_db)):
 
 
 @app.patch("/api/pets/{id}", status_code=status.HTTP_200_OK)
-def update_pet(id: int = Path(...), pet: schemaPets.PetUpdate = Body(...), db: Session = Depends(get_db)):
+def update_pet(
+    id: int = Path(...),
+    pet: schemaPets.PetUpdate = Body(...),
+    db: Session = Depends(get_db),
+):
     pet_result = crudPet.update(id, db, pet)
     return {"publication": pet_result}
 
@@ -139,14 +178,31 @@ def get_publications(db: Session = Depends(get_db)):
     return crudPublication.get_all(db)
 
 
-@app.post("/api/createPublication", status_code=status.HTTP_201_CREATED)
-def add_publication(publication: schemaPublication.PublicationCreate = Body(...), db: Session = Depends(get_db)):
+@app.post("/api/upload-image", response_model=schemaImagePublication.UploadedImage)
+def upload_and_get_image_data(
+    file: UploadFile = File(...), db: Session = Depends(get_db)
+):
+    image_name, url_image = crudUpload.upload_image(file, db)
+
+    return {"image": image_name, "url": url_image}
+
+
+@app.post("/api/publications", status_code=status.HTTP_201_CREATED)
+def add_publication(
+    publication: schemaPublication.PublicationCreate,
+    db: Session = Depends(get_db),
+):
     publication_result = crudPublication.create(publication, db)
+
     return {"publication": publication_result}
 
 
 @app.patch("/api/publications/{id}", status_code=status.HTTP_200_OK)
-def update_publication(id: int = Path(...), publication: schemaPublication.PublicationUpdate = Body(...), db: Session = Depends(get_db)):
+def update_publication(
+    id: int = Path(...),
+    publication: schemaPublication.PublicationUpdate = Body(...),
+    db: Session = Depends(get_db),
+):
     publication_result = crudPublication.update(id, db, publication)
     return {"publication": publication_result}
 
@@ -157,49 +213,64 @@ def delete_publication(id: int = Path(...), db: Session = Depends(get_db)):
 
 
 # Routers user
-@app.get("/api/users/{id}", status_code=status.HTTP_200_OK)
-def get_user_by_id(id: int = Path(...), db: Session = Depends(get_db)):
-    user = crudUser.get_by_id(id, db)
-    return {"user": user}
+# @app.get("/api/users/{id}", status_code=status.HTTP_200_OK)
+# def get_user_by_id(id: int = Path(...), db: Session = Depends(get_db)):
+#     user = crudUser.get_by_id(id, db)
+#     return {"user": user}
 
 
-@app.get("/api/users/", status_code=status.HTTP_200_OK)
-def get_users(db: Session = Depends(get_db)):
-    users = crudUser.get_all(db)
-    return {"users": users}
+# @app.get("/api/users/", status_code=status.HTTP_200_OK)
+# def get_users(db: Session = Depends(get_db)):
+#     users = crudUser.get_all(db)
+#     return {"users": users}
 
 
-@app.get("/api/user/publications/{id}", status_code=status.HTTP_200_OK)
-def get_publications_user(id: int, db: Session = Depends(get_db)):
-    users = crudUser.get_publications(id, db)
-    return {"users": users}
+# @app.get("/api/user/publications/{id}", status_code=status.HTTP_200_OK)
+# def get_publications_user(id: int, db: Session = Depends(get_db)):
+#     users = crudUser.get_publications(id, db)
+#     return {"users": users}
+
+# anterior
+# @app.post("/api/users/", status_code=status.HTTP_201_CREATED)
+# def add_user(user: schemaUser.UserCreate = Body(...), db: Session = Depends(get_db)):
+#     user_result = crudUser.create(user, db)
+#     return {"user": user_result}
 
 
-@app.post("/api/users/", status_code=status.HTTP_201_CREATED)
-def add_user(user: schemaUser.UserCreate = Body(...), db: Session = Depends(get_db)):
-    user_result = crudUser.create(user, db)
-    return {"user": user_result}
+# @app.patch("/api/users/{id}", status_code=status.HTTP_200_OK)
+# def update_user(
+#     id: int = Path(...),
+#     user: schemaUser.UserUpdate = Body(...),
+#     db: Session = Depends(get_db),
+# ):
+#     user_result = crudUser.update(id, db, user)
+#     return {"user": user_result}
 
 
-@app.patch("/api/users/{id}", status_code=status.HTTP_200_OK)
-def update_user(id: int = Path(...), user: schemaUser.UserUpdate = Body(...), db: Session = Depends(get_db)):
-    user_result = crudUser.update(id, db, user)
-    return {"user": user_result}
+# @app.delete("/api/users/{id}", status_code=status.HTTP_204_NO_CONTENT)
+# def delete_user(id: int = Path(...), db: Session = Depends(get_db)):
+#     crudUser.delete(id, db)
 
 
-@app.delete("/api/users/{id}", status_code=status.HTTP_204_NO_CONTENT)
-def delete_user(id: int = Path(...), db: Session = Depends(get_db)):
-    crudUser.delete(id, db)
+# @app.post("/api/users/", status_code=status.HTTP_201_CREATED)
+# def register_user(user: schemaUser.UserCreate, db: Session = Depends(get_db)):
+#     user_result = crudUser.create(user, db)
+#     return {"user": user_result}
+
+# Routers profile
+# @app.post("/api/createProfile/", status_code=status.HTTP_201_CREATED)
+# def add_profile(
+#     profile: schemaProfile.ProfileCreate = Body(...), db: Session = Depends(get_db)
+# ):
+#     profile_result = crudProfile.create(profile, db)
+#     return {"profile": profile_result}
 
 
-#Routers profile
-@app.post("/api/createProfile/", status_code=status.HTTP_201_CREATED)
-def add_profile(auth: CognitoToken = Depends(cognito_us.auth_required), profile: schemaProfile.ProfileCreate = Body(...), db: Session = Depends(get_db)):
-    profile_result = crudProfile.create(profile, db)
-    return {"profile": profile_result}
-
-
-@app.patch("/api/profile/{id}", status_code=status.HTTP_200_OK)
-def update_profile(id: int = Path(...), profile: schemaProfile.ProfileUpdate = Body(...), db: Session = Depends(get_db)):
-    profile_result = crudProfile.update(id, db, profile)
-    return {"profile": profile_result}
+# @app.patch("/api/profile/{id}", status_code=status.HTTP_200_OK)
+# def update_profile(
+#     id: int = Path(...),
+#     profile: schemaProfile.ProfileUpdate = Body(...),
+#     db: Session = Depends(get_db),
+# ):
+#     profile_result = crudProfile.update(id, db, profile)
+#     return {"profile": profile_result}

@@ -4,12 +4,12 @@ INSERT INTO publications (publication_date,pub_type,city,address,status) VALUES(
 INSERT INTO publications (publication_date,pub_type,city,address,status) VALUES('2023-12-04','disponibles','Buenos Aires','Av. Gaona, C1416 CABA, Argentina','abierta');
 INSERT INTO publications (publication_date,pub_type,city,address,status) VALUES('2023-12-04','adoptados','Buenos Aires','Av. Gaona 1584, C1416 DRQ, Buenos Aires, Argentina','abierta');
 INSERT INTO publications (publication_date,pub_type,city,address,status) VALUES('2023-12-04','adoptados','Buenos Aires','Av. Gaona 1584, C1416 DRQ, Buenos Aires, Argentina','abierta');
-INSERT INTO users (email,pass_user,country,is_active,publication_id) values ('mexicano1@gmail.com','SoyMexican','MX',TRUE,1);
-INSERT INTO users (email,pass_user,country,is_active,publication_id) values ('mexicano2@gmail.com','Mexicanisimo','MX',TRUE,2);
-INSERT INTO users (email,pass_user,country,is_active,publication_id) values ('argentino1@gmail.com','Pibe1234','MX',TRUE,3);
-INSERT INTO users (email,pass_user,country,is_active,publication_id) values ('pepe.estrada@gmail.com','Laley3489','ARG',TRUE,4);
-INSERT INTO users (email,pass_user,country,is_active,publication_id) values ('lachula@gmail.com','Nenax493','ARG',TRUE,5);
-INSERT INTO users (email,pass_user,country,is_active,publication_id) values ('paolita.463@gmail.com','VeryGood','ARG',TRUE,6);
+INSERT INTO users (email,pass_user,country,is_active) values ('mexicano1@gmail.com','SoyMexican','MX',TRUE);
+INSERT INTO users (email,pass_user,country,is_active) values ('mexicano2@gmail.com','Mexicanisimo','MX',TRUE);
+INSERT INTO users (email,pass_user,country,is_active) values ('argentino1@gmail.com','Pibe1234','MX',TRUE);
+INSERT INTO users (email,pass_user,country,is_active) values ('pepe.estrada@gmail.com','Laley3489','ARG',TRUE);
+INSERT INTO users (email,pass_user,country,is_active) values ('lachula@gmail.com','Nenax493','ARG',TRUE);
+INSERT INTO users (email,pass_user,country,is_active) values ('paolita.463@gmail.com','VeryGood','ARG',TRUE);
 INSERT INTO pets (type,name,age,genre,size,breed,eye_color,description,fur,necklace,color,publication_id) VALUES('Gato','loli',2,'hembra','pequeña','Siames','azul','Nariz pinta miel y cafe','fino',TRUE,'bicolor',1);
 INSERT INTO pets (type,name,age,genre,size,breed,eye_color,description,fur,necklace,color,publication_id) VALUES('Perro','Rufino',2,'macho','mediana','French','cafe','pelo corto','chino',TRUE,'blanco',2);
 INSERT INTO pets (type,name,age,genre,size,breed,eye_color,description,fur,necklace,color,publication_id) VALUES('Perro','Doris',2,'hembra','grande','Pitbull','azul','color cafe con blanco y patas anchas','fino',TRUE,'bicolor',3);
