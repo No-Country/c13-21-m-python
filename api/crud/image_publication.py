@@ -2,6 +2,7 @@ from model.image_publication import ImagePublication
 from schema.image_publication import ImageInPublicationCreate, ImageInPublicationUpdate
 from fastapi import HTTPException, status
 from sqlalchemy.orm import Session
+import json
 
 
 def get_by_id(id:int, db:Session):
@@ -12,20 +13,30 @@ def get_by_id(id:int, db:Session):
     return image_publication
 
 
-def create(image: ImageInPublicationCreate):
+# def create(image: ImageInPublicationCreate):
+#     db_image_publication = ImagePublication(
+#         image = image.image,
+#         url = image.url
+#         )
+#     return db_image_publication
+
+def create(image: ImageInPublicationCreate, db:Session):
     db_image_publication = ImagePublication(
         image = image.image,
         url = image.url
-        )
+    )
+    db.add(db_image_publication)
+    db.commit()
+    db.refresh(db_image_publication)
     return db_image_publication
 
 
-def update(image: ImageInPublicationUpdate):
-    db_image_publication = ImagePublication(
-        image = image.image,
-        url = image.url
-        )
-    return db_image_publication
+# def update(image: ImageInPublicationUpdate):
+#     db_image_publication = ImagePublication(
+#         image = image.image,
+#         url = image.url
+#         )
+#     return db_image_publication
 
 
 def update(id: int, db: Session, image_publication: ImageInPublicationUpdate):
