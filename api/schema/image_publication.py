@@ -6,10 +6,15 @@ class ImageInPublicationBase(BaseModel):
     image: str
     url: str
 
+    class Config:
+        from_attributes = True
+        from_orm = True
 
 class ImageInPublicationCreate(ImageInPublicationBase):
     pass
 
+class UploadedImage(ImageInPublicationBase):
+    pass
 
 class ImagesInPublication(ImageInPublicationBase):
     id: int

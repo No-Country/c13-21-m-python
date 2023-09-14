@@ -1,8 +1,9 @@
 from model.publication import Publication
-from model.user import User
+from model.user import User, CountryEnum
 from schema.user import UserCreate, UserUpdate
 from sqlalchemy.orm import Session
 from fastapi import HTTPException, status
+from authentication import password, authentication
 
 
 def get_by_id(id:int, db: Session):
@@ -17,7 +18,8 @@ def get_by_email(email: str, db: Session):
     user = db.query(User).filter(User.email == email).first()
 
     if user is None:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
+        return None
+    
     return user
 
 
@@ -34,16 +36,33 @@ def get_publications(id:int, db:Session):
     return publications
 
 
-def create(user: UserCreate, db: Session):
-    fake_hashed_password = user.pass_user + "notreallyhashed"
-    db_user = User(
-        email=user.email, pass_user=fake_hashed_password, country=user.country
-    )
-    db.add(db_user)
-    db.commit()
-    db.refresh(db_user)
-    return db_user
+# def create(user: UserCreate, db: Session):
+#     fake_hashed_password = user.pass_user + "notreallyhashed"
+#     db_user = User(
+#         email=user.email, pass_user=fake_hashed_password, country=user.country
+#     )
+#     db.add(db_user)
+#     db.commit()
+#     db.refresh(db_user)
+#     return db_user
 
+def create(user: UserCreate, db: Session):
+    user_exist = get_by_email(user.email, db)
+    if user_exist:
+        raise HTTPException(
+            status_code=status.HTTP_409_CONFLICT, detail="User email already exist"
+        )
+
+    hashed_password = password.get_password_hash(user.pass_user)
+    print(hashed_password)
+
+    user_db = User(
+        email=user.email, country=user.country, pass_user=hashed_password
+    )
+    db.add(user_db)
+    db.commit()
+    db.refresh(user_db)
+    return user_db
 
 def update(id: int, db: Session, user: UserUpdate):
     db_user = get_by_id(id, db)

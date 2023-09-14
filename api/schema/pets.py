@@ -1,20 +1,63 @@
 from typing import Optional
 from pydantic import BaseModel
+from enum import Enum
 
+class TypeEnum(str, Enum):
+    Perro = "Perro"
+    Gato = "Gato"
+    Hamster = "Hamster"
+    Conejo = "Conejo"
+    Tortuga = "Tortuga"
+
+class GenreEnum(str, Enum):
+    macho = "macho"
+    hembra = "hembra"
+
+class ColorEnum(str, Enum):
+    blanco = "blanco"
+    azul = "azul"
+    negro = "negro"
+    gris = "gris"
+    verde = "verde"
+    amarillo = "amarillo"
+    bicolor = "bicolor"
+    atigrado = "atigrado"
+    cafe = "cafe"
+    miel = "miel"
+    marron = "marron"
+    tricolor = "tricolor"
+
+class FurEnum(str, Enum):
+    fino = "fino"
+    chino = "chino"
+    maltratado = "maltratado"
+    grueso = "grueso"
+    corto = "corto"
+    largo = "largo"
+    NA = "NA"
+
+class SizeEnum(str, Enum):
+    pequeña = "pequeña"
+    chica = "chica"
+    mediana = "mediana"
+    grande = "grande"
 
 class PetBase(BaseModel):
-    type: str
+    type: TypeEnum
     name: str
     age: int
-    genre: str
-    size: str
+    genre: GenreEnum
+    size: SizeEnum
     breed: str
-    eye_color: str
+    eye_color: ColorEnum
     description: str
-    fur: str
+    fur: FurEnum
     necklace: bool
-    color: str
+    color: ColorEnum
 
+    class Config:
+        from_attributes = True
+        from_orm = True
 
 class PetCreate(PetBase):
     pass
@@ -31,17 +74,17 @@ class Pet(PetBase):
 
 
 class PetUpdate(BaseModel):
-    type: Optional[str] = None
+    type: Optional[TypeEnum] = None
     name: Optional[str] = None
     age: Optional[int] = None
-    genre: Optional[str] = None
-    size: Optional[str] = None
+    genre: Optional[GenreEnum] = None
+    size: Optional[SizeEnum] = None
     breed: Optional[str] = None
-    eye_color: Optional[str] = None
+    eye_color: Optional[ColorEnum] = None
     description: Optional[str] = None
-    fur: Optional[str] = None
+    fur: Optional[FurEnum] = None
     necklace: Optional[bool] = None
-    color: Optional[str] = None
+    color: Optional[ColorEnum] = None
 
 
 class PetSlider(BaseModel):
@@ -49,14 +92,14 @@ class PetSlider(BaseModel):
 
 
 class PetView(BaseModel):
-    type: str
+    type: TypeEnum
     name: str
-    genre: str
+    genre: GenreEnum
     description: str
 
 
 class PetDetails(BaseModel):
-    type: str
+    type: TypeEnum
     name: str
-    genre: str
+    genre: GenreEnum
     description: str

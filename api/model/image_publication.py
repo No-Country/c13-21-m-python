@@ -8,8 +8,10 @@ class ImagePublication(Base):
     __tablename__ = "image_publication"
 
     id = Column(Integer, primary_key=True, index=True)
-    image = Column(String, index=True)
-    url = Column(String, index=True)
+    image = Column(String(100))
+    url = Column(String(200))
 
     publication_id = Column(Integer, ForeignKey("publications.id"))
-    publication_image = relationship(Publication, back_populates="image_publication", lazy="joined")
+    # publication_image = relationship(Publication, back_populates="image_publication", lazy="joined")
+    publication_image = relationship(Publication, back_populates="image_publication")
+

@@ -1,17 +1,24 @@
 from pydantic import BaseModel
 from typing import List, Optional
 from schema.user import User, UserDetails
-from schema.image_publication import ImagesInPublication, ImagesInPublicationSlider, ImagesInPublicationView, ImagesInPublicationDetails
-from schema.pets import Pet, PetSlider, PetView, PetDetails, PetCreate
+from schema.image_publication import (
+    ImageInPublicationCreate,
+    ImagesInPublicationSlider,
+    ImagesInPublicationView,
+    ImagesInPublicationDetails,
+    ImagesInPublication
+)
+from schema.pets import Pet, PetSlider, PetView, PetDetails, PetCreate, PetBase
 from enum import Enum
 import datetime
+from pydantic_extra_types.phone_numbers import PhoneNumber
 
 
 class PubTypeEnum(str, Enum):
-    perdidos = "Busqueda"
-    encontrados = "Encontrada"
-    adoptados = "Adoptada"
-    disponibles = "En Adopción"
+    perdidos = "perdidos"
+    encontrados = "encontrados"
+    adoptados = "adoptados"
+    disponibles = "disponibles"
 
 
 class PubStatus(str, Enum):
@@ -21,26 +28,41 @@ class PubStatus(str, Enum):
 
 class PublicationBase(BaseModel):
     publication_date: datetime.date
-    pub_type: str
+    pub_type: PubTypeEnum
     city: str
     address: Optional[str] = None
     status: PubStatus
-
-
-class PublicationCreate(PublicationBase):
-    pet_publication: PetCreate
-    #image_publication: List[ImagesInPublicationCreate] = []
-
-
-class Publication(PublicationBase):
-    id: int
-    pet_publication: Pet
-    image_publication: List[ImagesInPublication] = []
-    user_publication: User
+    name: str
+    phone: PhoneNumber
 
     class Config:
         from_attributes = True
         from_orm = True
+
+class PublicationCreate(PublicationBase):
+    pet_publication: PetCreate
+    image_publication: ImageInPublicationCreate
+    
+class PublicationInDetail(PublicationBase):
+    pass
+    # pet_puplication : Pet
+    # image_publication : ImagesInPublication
+
+    class Config:
+        from_attributes = True
+        from_orm = True
+
+class Publication(PublicationBase):
+    # id: int
+    pet_publication: Pet
+    image_publication: List[ImagesInPublication] = []
+    # image_publication: ImagesInPublication
+    # para la nueva versión
+    # user_publication: User
+
+    # class Config:
+    #     from_attributes = True
+    #     from_orm = True
 
 
 class PublicationUpdate(BaseModel):
@@ -70,4 +92,4 @@ class PublicationDetails(BaseModel):
     address: str
     pet_publication: PetDetails
     image_publication: List[ImagesInPublicationDetails] = []
-    user_publication: UserDetails
+    # user_publication: UserDetails

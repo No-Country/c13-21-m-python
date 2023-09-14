@@ -5,8 +5,7 @@ id SERIAL PRIMARY KEY,
 email VARCHAR(150) NOT NULL,
 pass_user VARCHAR(250) NOT NULL,
 country VARCHAR(3) NOT NULL,
-is_Active BOOLEAN DEFAULT true,
-publication_id INT NOT NULL
+is_Active BOOLEAN DEFAULT true
 );
 
 COMMENT ON TABLE users IS 'The users of the application';
@@ -27,6 +26,8 @@ pub_type VARCHAR(11),
 city VARCHAR(100) NOT NULL,
 address VARCHAR(100),
 status VARCHAR(7) DEFAULT 'OPEN'
+name VARCHAR(200),
+phone VARCHAR(16)
 );
 
 COMMENT ON TABLE publications IS 'Publications of pets';
@@ -60,6 +61,15 @@ user_id INT NOT NULL
 );
 
 COMMENT ON TABLE profile IS 'User Profile';
+
+CREATE TABLE access_tokens(
+user_id INT NOT NULL,
+access_tokens VARCHAR(255),
+expiration_date TIMESTAMP
+);
+
+COMMENT ON TABLE profile IS 'Acces tokens for users, one for user';
+
 
 ALTER TABLE pets ADD FOREIGN KEY (publication_id) REFERENCES publications(id) ON UPDATE CASCADE ON DELETE RESTRICT;
 ALTER TABLE users ADD FOREIGN KEY (publication_id) REFERENCES publications(id) ON UPDATE CASCADE ON DELETE RESTRICT;
