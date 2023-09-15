@@ -1,4 +1,5 @@
 /** @type {import('next').NextConfig} */
+
 const nextConfig = {
   rewrites: async () => {
     return [
@@ -25,6 +26,19 @@ const nextConfig = {
       },
     ];
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com'
+      },
+      {
+        protocol: 'https',
+        hostname: 'fotos-petfinder-c13-21-m.s3.us-west-1.amazonaws.com'
+      },
+    ],
+  },
 };
 
-module.exports = nextConfig;
+
+module.exports = nextConfig ;

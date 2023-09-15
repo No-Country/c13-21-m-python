@@ -38,7 +38,7 @@ def get_by_id(id: int, db: Session):
     return publication
 
 
-def get_sliderPerdidos(db: Session):
+def get_carouselPerdidos(db: Session):
     return paginate(
         db,
         select(Publication)
@@ -47,7 +47,7 @@ def get_sliderPerdidos(db: Session):
     )
 
 
-def get_sliderEncontrados(db: Session):
+def get_carouselEncontrados(db: Session):
     return paginate(
         db,
         select(Publication)
@@ -56,7 +56,7 @@ def get_sliderEncontrados(db: Session):
     )
 
 
-def get_sliderAdopciones(db: Session):
+def get_carouselAdopciones(db: Session):
     return paginate(
         db,
         select(Publication)

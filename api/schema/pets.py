@@ -87,7 +87,7 @@ class PetUpdate(BaseModel):
     color: Optional[ColorEnum] = None
 
 
-class PetSlider(BaseModel):
+class PetCarousel(BaseModel):
     name: str
 
 

@@ -1,3 +1,203 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.navbar-clear{
+    @apply w-full shadow-md h-20 lg:h-[12vh] sticky top-0 z-50 backdrop-blur-sm bg-black/20 py-4 px-32;
+}
+
+.navbar-clear .menu{
+    @apply flex flex-row justify-center items-center gap-8 text-white
+}
+
+.navbar-clear .inp-search{
+    @apply hidden 
+}
+
+.navbar-clear .btn-login{
+    @apply border-2 border-cyan-500 text-white rounded-md py-2 px-3 hover:bg-black/30 transition-all hover:text-cyan-500
+}
+
+.navbar{
+    @apply w-full h-20 lg:h-[5rem] sticky top-0 z-50 py-4 px-32 bg-white;
+}
+
+.navbar .menu {
+    @apply flex flex-row justify-center items-center gap-16  font-light
+}
+
+.navbar .menu a{
+    @apply relative flex flex-col justify-center items-center hover:text-color3-500 text-gray-400 font-normal transition-all duration-500
+}
+
+.navbar .menu .dot{
+    @apply hidden
+}
+
+.navbar .menu .active{
+    @apply text-color3-500 font-semibold
+}
+
+.navbar .menu .active .dot{
+    @apply block absolute text-4xl mt-10
+}
+
+.navbar .group-search{
+    @apply flex items-center rounded-full px-3 py-0 w-[15rem] focus:outline-none focus:ring-2 focus:ring-cyan-200 focus:border-transparent transition-all text-gray-700 border-[1px] border-gray-300
+}
+
+.navbar .group-search input{
+    @apply text-sm my-1
+}
+
+.navbar .group-search input{
+    @apply bg-transparent w-full focus:outline-none
+}
+.navbar .btn-login{
+    @apply text-gray-500 rounded-full py-2 px-3 hover:bg-color3-50 transition-all hover:text-color3-500 text-xl
+}
+
+/* ****** HOME ****** */
+
+.btn{
+    @apply text-color3-500 rounded-full py-2 px-5 hover:bg-color3-50 transition-all hover:text-color3-600 flex items-center gap-2
+}
+
+.homeSwiper{
+    @apply h-[540px]
+}
+
+
+.homeSwiper .swiper-pagination-bullet{
+    @apply bg-gray-700;
+    opacity: .9;
+}
+
+.homeSwiper .swiper-pagination-bullet-active{
+    @apply bg-color2-500
+}
+
+.carruselSwiper .swiper-button-next, .carruselSwiper .swiper-button-prev{
+    @apply text-color3-500 text-sm font-extrabold bg-white rounded-full w-10 h-10 flex justify-center items-center drop-shadow-md
+}
+.carruselSwiper .swiper-button-next{
+    @apply right-0
+}
+.carruselSwiper .swiper-button-prev{
+    @apply left-0
+}
+.carruselSwiper{
+    --swiper-navigation-size: 15px;
+}
+
+.carrousel-title{
+    @apply text-2xl text-gray-600 font-semibold
+}
+
+/* **** PAGE **** */
+
+.pageContainer{
+    @apply w-full h-full flex flex-col items-center
+}
+
+
+.pageContainer .container{
+    @apply w-[1280px]
+}
+
+.page-topbar{
+    @apply flex flex-row justify-between items-center border-y-[1px] border-gray-300 py-2 mb-1
+}
+
+.wrap-atributes{
+    @apply flex items-center gap-2
+}
+
+.atribute{
+    @apply flex items-center border-[1px] border-color3-500 rounded-full text-color3-500 gap-2 text-xs py-1 px-3
+}
+
+.atribute-lg{
+    @apply flex items-center border-[1px] border-color3-500 rounded-full text-color3-500 gap-2 text-sm py-2 px-3
+}
+
+.pagination{ 
+    @apply flex flex-row py-16 gap-1
+}
+
+.pagination .btn-pagination{
+    @apply flex items-center py-1 px-3 text-gray-400 transition-all duration-300 cursor-pointer rounded-lg
+}
+
+
+.pagination .active{
+    @apply font-bold text-gray-600 border-[1px] border-color3-50
+}
+
+
+.pagination .btn-pagination:hover{
+    @apply text-color3-500 bg-color3-50
+} 
+
+
+/* **** FORM **** */
+
+.postForm{
+    @apply bg-color3-50/20 rounded-xl py-8 px-48 flex flex-col text-gray-500
+}
+
+.postForm h4{
+    @apply text-lg w-full text-gray-700 font-semibold mb-4 mt-4
+}
+
+.postForm .pics{
+    @apply flex gap-4 items-center font-semibold
+}
+.postForm .pic-container{
+    @apply w-16 h-16 bg-slate-50 rounded-sm bg-pic-icon bg-no-repeat bg-center
+}
+
+.postForm .pics-section{
+    @apply flex flex-row justify-between items-center mb-4 border-[1px] border-dashed border-color3-500 rounded-lg py-2 px-3
+}
+
+.postForm .wrap-group{
+    @apply flex items-center justify-between mb-2
+}
+
+.postForm .wrap-group .form-group-3{
+    @apply flex flex-col items-start w-1/3 
+}
+
+.postForm .wrap-group .form-group-1{
+    @apply flex flex-col items-start w-full
+}
+
+.btn-purple{
+    @apply text-white rounded-lg py-1 px-5 bg-color3-500 hover:bg-color3-400 transition-all hover:text-white flex items-center gap-2 font-semibold duration-300
+}
+
+.btn-purple-outline{
+    @apply text-color3-500 rounded-lg py-1 px-5 bg-white hover:bg-color3-400 transition-all hover:text-white flex items-center gap-2 font-semibold duration-300 border-[1px] border-color3-500
+}
+
+/*.postForm .wrap-group .form-group-3 input, .postForm .wrap-group .form-group-3 select{
+    @apply w-[90%]
+}*/
+
+.postForm input, .postForm select, .postForm textarea{
+    @apply w-full bg-transparent focus:outline-none border-[1px] border-gray-400 rounded-lg py-2 px-3 text-gray-700 my-2
+}
+
+.postForm select{
+    @apply px-6;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAUCAMAAACtdX32AAAAdVBMVEUAAAD///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAhMdQaAAAAJ3RSTlMAAAECAwQGBwsOFBwkJTg5RUZ4eYCHkJefpaytrsXGy8zW3+Do8vNn0bsyAAAAYElEQVR42tXROwJDQAAA0Ymw1p9kiT+L5P5HVEi3qJn2lcPjtIuzUIJ/rhIGy762N3XaThqMN1ZPALsZPEzG1x8LrFL77DHBnEMxBewz0fJ6LyFHTPL7xhwzWYrJ9z22AqmQBV757MHfAAAAAElFTkSuQmCC);
+    background-position: 95%;
+    background-repeat: no-repeat;
+}
+
+.postForm textarea{
+    @apply h-52
+}
