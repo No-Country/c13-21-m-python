@@ -8,6 +8,10 @@ const nextConfig = {
         destination: process.env.ENDPOINT_API+':path*',
       },
       {
+        source: '/api/:path*',
+        destination: 'http://50.18.105.237:5000/api/:path*',
+      },
+      {
         source: "/api/:path*",
         destination:
           process.env.NODE_ENV === "development"
