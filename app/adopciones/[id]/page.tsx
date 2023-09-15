@@ -10,21 +10,7 @@ import { icon_cat, icon_dog } from "@/public/assets";
 import MyMap from "@components/page/map";
 
 import useSWR from 'swr';
-
 import fetcherFunction from "@/app/fetcherFunction"
-
-const fetcher = async (url: RequestInfo | URL) => {
-    try {
-      const response = await fetch(url);
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      throw error; // Rethrow the error
-    }
-  };
 
 export default function Page({ params }: { params: any }) {
 
@@ -90,7 +76,7 @@ export default function Page({ params }: { params: any }) {
                             </div>
                             <div className="flex items-center justify-center gap-1 py-2">
                                 <RiMapPin2Line className="text-color3-500 text-[16px]" />
-                                <span className="text-sm">{publication.address}</span>
+                                <span className="text-sm">{publication.city}</span>
                             </div>
 
                         </div>

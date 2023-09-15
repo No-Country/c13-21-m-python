@@ -11,17 +11,25 @@ import { icon_cat, icon_dog } from "@/public/assets";
 import MyMap from "@components/page/map";
 
 import useSWR from 'swr';
+import fetcherFunction from "@/app/fetcherFunction"
 
 export default function Page({ params }: { params: any }) {
 
     const router = useRouter();
     const id = params.id;
 
-    const fetcher = (url: RequestInfo | URL) => fetch(url).then((res) => res.json());
-    const { data, error, isLoading } = useSWR('http://50.18.105.237:5000/api/publications/'+id, fetcher);
+    const { data, error } = useSWR('http://50.18.105.237:5000/api/publications/'+id, fetcherFunction);
+
+    console.log('URL being fetched:', 'http://50.18.105.237:5000/api/publications/'+id);
  
-    if (error) return <div>Failed to load</div>
-    if (isLoading) return <div>Loading...</div>
+    if (error) {
+        return <div>Error fetching data</div>;
+    }
+    
+    if (!data) {
+        return <div>Loading...</div>;
+    }
+
     console.log(data);
 
     const publication = data.publication
@@ -71,7 +79,7 @@ export default function Page({ params }: { params: any }) {
                             </div>
                             <div className="flex items-center justify-center gap-1 py-2">
                                 <RiMapPin2Line className="text-color3-500 text-[16px]" />
-                                <span className="text-sm">{publication.address}</span>
+                                <span className="text-sm">{publication.city}</span>
                             </div>
 
                         </div>
