@@ -10,19 +10,25 @@ import { icon_cat, icon_dog } from "@/public/assets";
 
 import MyMap from "@components/page/map";
 
-import useSWR from 'swr';
-
 export default function Page({ params }: { params: any }) {
 
     const router = useRouter();
     const id = params.id;
     
-    const fetcher = (url) => fetch(url).then((res) => res.json());
-    const { data, error, isLoading } = useSWR('http://50.18.105.237:5000/api/publications/'+id, fetcher);
+    const [data, setData] = useState(null)
+    const [isLoading, setLoading] = useState(true)
  
-    if (error) return <div>Failed to load</div>
-    if (isLoading) return <div>Loading...</div>
-    console.log(data);
+    useEffect(() => {
+        fetch('http://50.18.105.237:5000/api/publications/'+id)
+        .then((res) => res.json())
+        .then((data) => {
+            setData(data)
+            setLoading(false)
+        })
+    }, [])
+ 
+    if (isLoading) return <p>Loading...</p>
+    if (!data) return <p>No profile data</p>
 
     const publication = data.publication;
     console.log(publication);
