@@ -11,16 +11,37 @@ import MyMap from "@components/page/map";
 
 import useSWR from 'swr';
 
+const fetcher = async (url: RequestInfo | URL) => {
+    try {
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      throw error; // Rethrow the error
+    }
+  };
+
 export default function Page({ params }: { params: any }) {
 
     const router = useRouter();
     const id = params.id;
 
-    const fetcher = (url: RequestInfo | URL) => fetch(url).then((res) => res.json());
-    const { data, error, isLoading } = useSWR('http://50.18.105.237:5000/api/publications/'+id, fetcher);
+    const { data, error } = useSWR('http://50.18.105.237:5000/api/publications/'+id, fetcher);
+
+    console.log('URL being fetched:', 'http://50.18.105.237:5000/api/publications/'+id);
  
-    if (error) return <div>Failed to load</div>
-    if (isLoading) return <div>Loading...</div>
+    if (error) {
+        console.error('Error fetching data:', error);
+        return <div>Error fetching data</div>;
+    }
+    
+    if (!data) {
+        return <div>Loading...</div>;
+    }
+
     console.log(data);
 
     const publication = data.publication
