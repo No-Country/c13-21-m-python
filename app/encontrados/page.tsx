@@ -6,7 +6,7 @@ import Card from '@components/page/card';
 
 export default async function Encontrados() {
     
-    const datos = await fetch(process.env.ENDPOINT_API+'viewEncontrados/?page=1&size=9')
+    const datos = await fetch('http://50.18.105.237:5000/api/viewEncontrados/?page=1&size=9')
     .then(response => response.json())
     .then(data => [(data)]);
 

@@ -14,7 +14,7 @@ export default function Encontrados() {
             setError(null);
 
             try {
-                const response = await fetch(process.env.ENDPOINT_API+'carouselAdopciones/?page=1&size=9');
+                const response = await fetch('http://50.18.105.237:5000/api/carouselAdopciones/?page=1&size=9');
                 if (!response.ok) {
                     throw new Error('Unable to fetch data');
                 }
