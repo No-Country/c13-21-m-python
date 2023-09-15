@@ -30,7 +30,7 @@ class ImageInPublicationUpdate(BaseModel):
     url: Optional[str] = None
 
 
-class ImagesInPublicationSlider(BaseModel):
+class ImagesInPublicationCarousel(BaseModel):
     url: str
 
 

@@ -3,12 +3,12 @@ from typing import List, Optional
 from schema.user import User, UserDetails
 from schema.image_publication import (
     ImageInPublicationCreate,
-    ImagesInPublicationSlider,
+    ImagesInPublicationCarousel,
     ImagesInPublicationView,
     ImagesInPublicationDetails,
     ImagesInPublication
 )
-from schema.pets import Pet, PetSlider, PetView, PetDetails, PetCreate, PetBase
+from schema.pets import Pet, PetCarousel, PetView, PetDetails, PetCreate, PetBase
 from enum import Enum
 import datetime
 from pydantic_extra_types.phone_numbers import PhoneNumber
@@ -73,14 +73,16 @@ class PublicationUpdate(BaseModel):
     status: Optional[PubStatus] = None
 
 
-class PublicationSlider(BaseModel):
+class PublicationCarousel(BaseModel):
+    id: int
     publication_date: datetime.date
-    address: str
-    pet_publication: PetSlider
-    image_publication: List[ImagesInPublicationSlider] = []
+    city: str
+    pet_publication: PetCarousel
+    image_publication: List[ImagesInPublicationCarousel] = []
 
 
 class PublicationView(BaseModel):
+    id: int
     publication_date: datetime.date
     address: str
     pet_publication: PetView
@@ -88,6 +90,7 @@ class PublicationView(BaseModel):
 
 
 class PublicationDetails(BaseModel):
+    id: int
     publication_date: datetime.date
     address: str
     pet_publication: PetDetails

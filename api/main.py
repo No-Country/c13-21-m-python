@@ -107,30 +107,30 @@ def get_publication_by_id(id: int = Path(...), db: Session = Depends(get_db)):
 
 
 @app.get(
-    "/api/sliderPerdidos/",
+    "/api/carouselPerdidos/",
     status_code=status.HTTP_200_OK,
-    response_model=Page[schemaPublication.PublicationSlider],
+    response_model=Page[schemaPublication.PublicationCarousel],
 )
-def get_slider_perdidos(db: Session = Depends(get_db)):
-    return crudPublication.get_sliderPerdidos(db)
+def get_carousel_perdidos(db: Session = Depends(get_db)):
+    return crudPublication.get_carouselPerdidos(db)
 
 
 @app.get(
-    "/api/sliderEncontrados/",
+    "/api/carouselEncontrados/",
     status_code=status.HTTP_200_OK,
-    response_model=Page[schemaPublication.PublicationSlider],
+    response_model=Page[schemaPublication.PublicationCarousel],
 )
-def get_slider_encontrados(db: Session = Depends(get_db)):
-    return crudPublication.get_sliderEncontrados(db)
+def get_carousel_encontrados(db: Session = Depends(get_db)):
+    return crudPublication.get_carouselEncontrados(db)
 
 
 @app.get(
-    "/api/sliderAdopciones/",
+    "/api/carouselAdopciones/",
     status_code=status.HTTP_200_OK,
-    response_model=Page[schemaPublication.PublicationSlider],
+    response_model=Page[schemaPublication.PublicationCarousel],
 )
-def get_slider_adopciones(db: Session = Depends(get_db)):
-    return crudPublication.get_sliderAdopciones(db)
+def get_carousel_adopciones(db: Session = Depends(get_db)):
+    return crudPublication.get_carouselAdopciones(db)
 
 
 @app.get(
