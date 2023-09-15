@@ -8,25 +8,24 @@ import { BsGenderFemale, BsGenderMale } from "react-icons/bs";
 
 import { icon_cat, icon_dog } from "@/public/assets";
 
-import { data}  from '@utils/data';
 import MyMap from "@components/page/map";
 
-import useSWR from 'swr'
+import useSWR from 'swr';
 
 export default function Page({ params }: { params: any }) {
 
     const router = useRouter();
+    const id = params.id;
     
     const fetcher = (url) => fetch(url).then((res) => res.json());
-    const id = params.id;
-    const { data, error, isLoading } = useSWR(process.env.ENDPOINT_API+'publications/'+id, fetcher)
+    const { data, error, isLoading } = useSWR(process.env.ENDPOINT_API+'publications/'+id, fetcher);
  
     if (error) return <div>Failed to load</div>
     if (isLoading) return <div>Loading...</div>
     console.log(data);
 
-    const publication = data.publication
-    console.log(publication)
+    const publication = data.publication;
+    console.log(publication);
 
     return (
         <div className="pageContainer">
