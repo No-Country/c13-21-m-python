@@ -21,7 +21,7 @@ export default function Page({ params }: { params: any }) {
     }
     const fetcher = (url) => fetch(url).then((res) => res.json());
     const id = params.id;
-    const { data, error, isLoading } = useSWR('http://127.0.0.1:8000/api/publications/'+id, fetcher, options)
+    const { data, error, isLoading } = useSWR(process.env.ENDPOINT_API+'publications/'+id, fetcher, options)
  
     if (error) return <div>Failed to load</div>
     if (isLoading) return <div>Loading...</div>

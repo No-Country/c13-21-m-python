@@ -6,7 +6,7 @@ import Card from '@components/page/card';
 
 export default async function Adopciones() {
 
-    const datos = await fetch('http://127.0.0.1:8000/api/viewAdopciones/?page=1&size=9')
+    const datos = await fetch(process.env.ENDPOINT_API+'viewAdopciones/?page=1&size=9')
     .then(response => response.json())
     .then(data => [(data)]);
 
