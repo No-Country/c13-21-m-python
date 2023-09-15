@@ -11,6 +11,8 @@ import MyMap from "@components/page/map";
 
 import useSWR from 'swr';
 
+import fetcherFunction from "@/app/fetcherFunction"
+
 const fetcher = async (url: RequestInfo | URL) => {
     try {
       const response = await fetch(url);
@@ -29,12 +31,11 @@ export default function Page({ params }: { params: any }) {
     const router = useRouter();
     const id = params.id;
 
-    const { data, error } = useSWR('http://50.18.105.237:5000/api/publications/'+id, fetcher);
+    const { data, error } = useSWR('http://50.18.105.237:5000/api/publications/'+id, fetcherFunction);
 
     console.log('URL being fetched:', 'http://50.18.105.237:5000/api/publications/'+id);
  
     if (error) {
-        console.error('Error fetching data:', error);
         return <div>Error fetching data</div>;
     }
     
