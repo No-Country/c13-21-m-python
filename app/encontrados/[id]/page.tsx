@@ -1,4 +1,4 @@
-'use client';
+'use client'
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -11,20 +11,22 @@ import { icon_cat, icon_dog } from "@/public/assets";
 import { data}  from '@utils/data';
 import MyMap from "@components/page/map";
 
+import useSWR from 'swr'
+
 export default function Page({ params }: { params: any }) {
 
     const router = useRouter();
-    const [state, setState] = useState<any>({});
 
-    useEffect(() => {
-        
-        const id = params.id;
-        const filtered = data.filter((item) => item.id == +id);
+    const fetcher = (url) => fetch(url).then((res) => res.json());
+    const id = params.id;
+    const { data, error, isLoading } = useSWR('http://127.0.0.1:8000/api/publications/'+id, fetcher)
+ 
+    if (error) return <div>Failed to load</div>
+    if (isLoading) return <div>Loading...</div>
+    console.log(data);
 
-        setState(filtered[0]);
-
-        // eslint-disable-next-line no-use-before-define
-    }, [params.id]);
+    const publication = data.publication
+    console.log(publication)
 
     return (
         <div className="pageContainer">
@@ -37,7 +39,7 @@ export default function Page({ params }: { params: any }) {
                     Encontrados
                 </h1>
 
-                { !state.id ? <div className="w-full h-[100vh]">loading...</div> : <> 
+                { !publication.id ? <div className="w-full h-[100vh]">Loading...</div> : <> 
 
                 <div className="page-topbar duration-1000 ">
                     <div className='flex items-center gap-1'>
@@ -49,7 +51,7 @@ export default function Page({ params }: { params: any }) {
                         </button>
                     </div>
                     <div>
-                        { state.date }
+                        { publication.publication_date }
                     </div>
                 </div>
 
@@ -57,40 +59,40 @@ export default function Page({ params }: { params: any }) {
                     <div className="w-[40%] pr-[5%]">
                         <div className="py-4 flex flex-col justify-between items-start border-b-[1px] border-gray-200">
 
-                            <h1 className="text-4xl font-semibold text-gray-700 pb-4">{ state.name }</h1>
+                            <h1 className="text-4xl font-semibold text-gray-700 pb-4">{ publication.pet_publication.name }</h1>
                             <div className="wrap-atributes pb-4">
                                 <div className="atribute-lg">
-                                    { state.type === 'dog' && <><Image className="w-[14px]" src={icon_dog} alt="dog" width={100} height={100} /> Perro</> }
-                                    { state.type === 'cat' && <><Image className="w-[14px]" src={icon_cat} alt="cat" width={100} height={100} /> Gato</> }
+                                    { publication.pet_publication.type === 'Perro' && <><Image className="w-[14px]" src={icon_dog} alt="dog" width={100} height={100} /> Perro</> }
+                                    { publication.pet_publication.type === 'Gato' && <><Image className="w-[14px]" src={icon_cat} alt="cat" width={100} height={100} /> Gato</> }
                                 </div>
                                 <div className="atribute-lg">
-                                    { state.sex === 'male' && <><BsGenderMale className="text-color3-500 text-sm" /> Macho</> }
-                                    { state.sex === 'female' && <><BsGenderFemale className="text-color3-500 text-sm" /> Hembra</> }
+                                    { publication.pet_publication.genre === 'macho' && <><BsGenderMale className="text-color3-500 text-sm" /> Macho</> }
+                                    { publication.pet_publication.genre === 'hembra' && <><BsGenderFemale className="text-color3-500 text-sm" /> Hembra</> }
                                 </div>
                             </div>
                             <div className="flex items-center justify-center gap-1 py-2">
                                 <RiMapPin2Line className="text-color3-500 text-[16px]" />
-                                <span className="text-sm">{state.location}</span>
+                                <span className="text-sm">{publication.address}</span>
                             </div>
 
                         </div>
                         <div className="mt-4 mb-8 pt-4 pb-16 border-b-[1px] border-gray-200">
-                            { state.fullDescription }
+                            { publication.pet_publication.description }
                         </div>
 
                         <div>
                             <h2 className="text-md font-semibold text-gray-700 mb-4">
                                 Datos de contacto
                             </h2>
-                            <p>{state.contact_name}</p>
-                            <p>{state.contact_phone}</p>
+                            <p>{publication.name}</p>
+                            <p>{publication.phone}</p>
                         </div>
 
                     </div>
                     <div className="w-[60%]">
                         <div
                             className="bg-gray-100 h-[60vh] overflow-hidden flex justify-center items-center rounded-2xl bg-[${state.img}] bg-cover bg-center"
-                            style={{backgroundImage: `url(${state.img})`}}
+                            style={{backgroundImage: `url(${publication.image_publication[0].url})`}}
                         >
                             {/* 
                             <Image src={state.img} alt={state.name} width={500} height={500} className="h-full w-[150%]" />

@@ -1,14 +1,25 @@
+'use client'
 import { BiSlider } from 'react-icons/bi';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import Link from 'next/link';
 import Card from '@components/page/card';
 
+import useSWR from 'swr'
 import { data } from '@utils/data';
 
 export default function Adopciones() {
     
-    const slicedArr = data.slice(0, 9);
+    //const urlFetch = 'http://127.0.0.1:8000/api/viewAdopciones/?page=1&size=9'
+    const fetcher = (url) => fetch(url).then((res) => res.json());
+    const { data, error, isLoading } = useSWR('http://127.0.0.1:8000/api/viewAdopciones/?page=1&size=9', fetcher)
+ 
+    if (error) return <div>Failed to load</div>
+    if (isLoading) return <div>Loading...</div>
+    console.log(data);
+
+    const publication = data.publication
+    console.log(publication)
 
     return (
         <div className="pageContainer">

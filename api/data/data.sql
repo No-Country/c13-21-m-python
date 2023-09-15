@@ -1,9 +1,9 @@
-INSERT INTO publications (publication_date,pub_type,city,address,status) VALUES('2023-12-04','perdidos','CDMX','Av. de las Granjas 473, El Jaguey, Azcapotzalco, 02530 Ciudad de México, CDMX','abierta');
-INSERT INTO publications (publication_date,pub_type,city,address,status) VALUES('2023-07-12','encontrados','Veracruz','C. Madre Selva 773, Dos Caminos, 91726 Veracruz, Ver.','abierta');
-INSERT INTO publications (publication_date,pub_type,city,address,status) VALUES('2023-12-04','perdidos','Buenos Aires','Av. Tte. Gral. Donato Álvarez 1351, C1416 CABA, Argentina','abierta');
-INSERT INTO publications (publication_date,pub_type,city,address,status) VALUES('2023-12-04','disponibles','Buenos Aires','Av. Gaona, C1416 CABA, Argentina','abierta');
-INSERT INTO publications (publication_date,pub_type,city,address,status) VALUES('2023-12-04','adoptados','Buenos Aires','Av. Gaona 1584, C1416 DRQ, Buenos Aires, Argentina','abierta');
-INSERT INTO publications (publication_date,pub_type,city,address,status) VALUES('2023-12-04','adoptados','Buenos Aires','Av. Gaona 1584, C1416 DRQ, Buenos Aires, Argentina','abierta');
+INSERT INTO publications (publication_date,pub_type,city,address,status,name,phone) VALUES('2023-12-04','perdidos','CDMX','Av. de las Granjas 473, El Jaguey, Azcapotzalco, 02530 Ciudad de México, CDMX','abierta','Ramon Gutierrez','+52 55 5678 3734');
+INSERT INTO publications (publication_date,pub_type,city,address,status,name,phone) VALUES('2023-07-12','encontrados','Veracruz','C. Madre Selva 773, Dos Caminos, 91726 Veracruz, Ver.','abierta','Laura Cordoba','+52 55 4567 2100');
+INSERT INTO publications (publication_date,pub_type,city,address,status,name,phone) VALUES('2023-12-04','perdidos','Buenos Aires','Av. Tte. Gral. Donato Álvarez 1351, C1416 CABA, Argentina','abierta','Pedro Enriquez', '+52 55 3400 2167');
+INSERT INTO publications (publication_date,pub_type,city,address,status,name,phone) VALUES('2023-12-04','disponibles','Buenos Aires','Av. Gaona, C1416 CABA, Argentina','abierta', 'Leticia Samano','+54 11 2390 0056');
+INSERT INTO publications (publication_date,pub_type,city,address,status,name,phone) VALUES('2023-12-04','adoptados','Buenos Aires','Av. Gaona 1584, C1416 DRQ, Buenos Aires, Argentina','abierta', 'Julieta Dominguez','+54 11 1028 0641');
+INSERT INTO publications (publication_date,pub_type,city,address,status,name,phone) VALUES('2023-12-04','adoptados','Buenos Aires','Av. Gaona 1584, C1416 DRQ, Buenos Aires, Argentina','abierta', 'Ernesto Alacantara','+54 11 9926 0739');
 INSERT INTO users (email,pass_user,country,is_active) values ('mexicano1@gmail.com','SoyMexican','MX',TRUE);
 INSERT INTO users (email,pass_user,country,is_active) values ('mexicano2@gmail.com','Mexicanisimo','MX',TRUE);
 INSERT INTO users (email,pass_user,country,is_active) values ('argentino1@gmail.com','Pibe1234','MX',TRUE);
