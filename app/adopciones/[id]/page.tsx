@@ -9,19 +9,15 @@ import { icon_cat, icon_dog } from "@/public/assets";
 
 import MyMap from "@components/page/map";
 
-import useSWR from 'swr'
+import useSWR from 'swr';
 
 export default function Page({ params }: { params: any }) {
 
     const router = useRouter();
-    
-    const options = {
-        shouldRetryOnError: true,
-        errorRetryInterval: 500
-    }
-    const fetcher = (url) => fetch(url).then((res) => res.json());
     const id = params.id;
-    const { data, error, isLoading } = useSWR(process.env.ENDPOINT_API+'publications/'+id, fetcher, options)
+
+    const fetcher = (url) => fetch(url).then((res) => res.json());
+    const { data, error, isLoading } = useSWR(process.env.ENDPOINT_API+'publications/'+id, fetcher);
  
     if (error) return <div>Failed to load</div>
     if (isLoading) return <div>Loading...</div>
