@@ -76,7 +76,7 @@ export default function Page({ params }: { params: any }) {
                             </div>
                             <div className="flex items-center justify-center gap-1 py-2">
                                 <RiMapPin2Line className="text-color3-500 text-[16px]" />
-                                <span className="text-sm">{publication.address}</span>
+                                <span className="text-sm">{publication.city}</span>
                             </div>
 
                         </div>
