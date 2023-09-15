@@ -13,7 +13,7 @@ interface CardProps {
     data: { 
         id: number,
         publication_date: string,
-        address: string,
+        city: string,
         pet_publication: {
             type: string,
             name: string,
@@ -72,7 +72,7 @@ const Card: React.FC<CardProps> = ({ data, link }) => {
             <div className="flex justify-between text-sm text-gray-400 font-semibold">
                 <div className="flex items-center justify-center gap-1 px-4 py-2">
                     <RiMapPin2Line className="text-color3-500 text-[16px]" />
-                    <span className="text-sm">{data.address}</span>
+                    <span className="text-sm">{data.city}</span>
                 </div>
                 <div className="flex items-center gap-2 px-4 py-2">
                     <span className="text-sm">{data.publication_date}</span>
