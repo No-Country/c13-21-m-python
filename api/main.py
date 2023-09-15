@@ -63,16 +63,16 @@ app = FastAPI()
 add_pagination(app)
 
 # CORS configuration
-origins = [
-    "http://localhost",
-    "http://localhost:3000",  # Replace with your frontend's origin
-    "http://50.18.105.237:50",
-    "http://50.18.105.237:50:5000"
-]
+#origins = [
+#    "http://localhost",
+#    "http://localhost:3000",  # Replace with your frontend's origin
+#    "http://50.18.105.237:50",
+#    "http://50.18.105.237:50:5000"
+#]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],  # You can specify specific HTTP methods here
     allow_headers=["*"],  # You can specify specific headers here
