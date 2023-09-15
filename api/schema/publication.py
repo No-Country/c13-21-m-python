@@ -84,7 +84,7 @@ class PublicationCarousel(BaseModel):
 class PublicationView(BaseModel):
     id: int
     publication_date: datetime.date
-    address: str
+    city: str
     pet_publication: PetView
     image_publication: List[ImagesInPublicationView] = []
 
@@ -93,6 +93,7 @@ class PublicationDetails(BaseModel):
     id: int
     publication_date: datetime.date
     address: str
+    city: str
     pet_publication: PetDetails
     image_publication: List[ImagesInPublicationDetails] = []
     # user_publication: UserDetails

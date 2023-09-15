@@ -48,7 +48,7 @@ export default async function Adopciones() {
                             (item: {
                                 id: number,
                                 publication_date: string,
-                                address: string,
+                                city: string,
                                 pet_publication: {
                                     type: string,
                                     name: string,
