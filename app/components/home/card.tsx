@@ -5,7 +5,17 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 
 interface CardProps {
-    data: any; 
+    data: {
+        id: number;
+        publication_date: string;
+        city: string;
+        pet_publication: {
+            name: string;
+        }
+        image_publication: {
+            url: string;
+        }
+    }; 
     lblname: boolean;
     lbllocation: boolean;
     lbltime: boolean;
@@ -29,18 +39,18 @@ const Card: React.FC<CardProps> = ({ data, lblname, lbllocation, lbltime, lbldes
             onClick={handleClick}
         >
             <Image 
-                src={data.img} 
-                alt={data.name} 
+                src={data.image_publication.url} 
+                alt={data.pet_publication.name} 
                 className="w-[250px] h-[200px] object-cover rounded-lg" 
                 priority={false} 
                 width={200}
                 height={200}
             /> 
             <div className="mt-2 text-gray-500 text-left">
-                { lblname && <p className="font-semibold">{data.name}</p> }
-                { lbldesc && <p className="font-semibold text-gray-400">{data.desc}</p> }
-                { lbllocation && <p className="text-xs flex flex-row items-center gap-1 text-gray-400 mb-2"><RiMapPin2Line className="text-color3-500" />{data.location}</p> }
-                { lbltime && <p className="text-xs flex flex-row items-center gap-1 font-semibold">{data.time}</p> }
+                { lblname && <p className="font-semibold">{data.pet_publication.name}</p> }
+                { lbldesc && <p className="font-semibold text-gray-400">{data.pet_publication.name}</p> }
+                { lbllocation && <p className="text-xs flex flex-row items-center gap-1 text-gray-400 mb-2"><RiMapPin2Line className="text-color3-500" />{data.address}</p> }
+                { lbltime && <p className="text-xs flex flex-row items-center gap-1 font-semibold">{data.publication_date}</p> }
             </div>
         </div>
     );

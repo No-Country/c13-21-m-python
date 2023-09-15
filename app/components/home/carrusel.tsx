@@ -12,14 +12,17 @@ import Link from "next/link";
 
 interface CardProps {
     title: string;
-    data: Array<{
+    data: {
         id: number;
-        name: string;
-        desc: string;
-        img: string;
-        time: string;
-        location: string;
-    }>;
+        publication_date: string;
+        city: string;
+        pet_publication: {
+            name: string;
+        }
+        image_publication: {
+            url: string
+        }
+    };
     link: string;
     lblname: boolean;
     lbllocation: boolean;
@@ -50,10 +53,21 @@ const Carrusel: React.FC<CardProps> = ({ title, data, link, lblname, lbllocation
                 className="carruselSwiper"
             >
             {
-                data.map((d, index) => (
+                data.items.map(
+                    (item: { 
+                        id: number;
+                        publication_date: string;
+                        city: string;
+                        pet_publication: {
+                            name: string;
+                        }
+                        image_publication: {
+                            url: string
+                        }
+                    }, index: number) => (
                     <SwiperSlide key={index}>
                         <Card
-                            data={d}
+                            data={item}
                             lblname={lblname}
                             lbllocation={lbllocation}
                             lbltime={lbltime}
