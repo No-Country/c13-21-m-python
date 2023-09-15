@@ -1,25 +1,18 @@
-'use client'
 import { BiSlider } from 'react-icons/bi';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import Link from 'next/link';
 import Card from '@components/page/card';
 
-import useSWR from 'swr'
-import { data } from '@utils/data';
+export default async function Adopciones() {
 
-export default function Adopciones() {
-    
-    //const urlFetch = 'http://127.0.0.1:8000/api/viewAdopciones/?page=1&size=9'
-    const fetcher = (url) => fetch(url).then((res) => res.json());
-    const { data, error, isLoading } = useSWR('http://127.0.0.1:8000/api/viewAdopciones/?page=1&size=9', fetcher)
- 
-    if (error) return <div>Failed to load</div>
-    if (isLoading) return <div>Loading...</div>
-    console.log(data);
+    const datos = await fetch('http://127.0.0.1:8000/api/viewAdopciones/?page=1&size=9')
+    .then(response => response.json())
+    .then(data => [(data)]);
 
-    const publication = data.publication
-    console.log(publication)
+    const publications = datos[0].items
+    const total = datos[0].total
+    const page = datos[0].page
 
     return (
         <div className="pageContainer">
@@ -38,7 +31,7 @@ export default function Adopciones() {
                             <BiSlider className="icon-left" />
                             Filtrar
                         </button>
-                        <span className="lbl-results text-sm text-gray-400">358 Resultados</span>
+                        <span className="lbl-results text-sm text-gray-400">{total} Resultados</span>
                     </div>
                     <Link 
                         href="/post"
@@ -51,7 +44,23 @@ export default function Adopciones() {
 
                 <div className='flex flex-row flex-wrap justify-between'>
                     {
-                        slicedArr.map((item, index) => (
+                        publications.map(
+                            (item: {
+                                id: number,
+                                publication_date: string,
+                                address: string,
+                                pet_publication: {
+                                    type: string,
+                                    name: string,
+                                    genre: string,
+                                    description: string
+                                },
+                                image_publication: [
+                                    {
+                                        url: string
+                                    }
+                                ]
+                            }, index: number) => (
                             <Card 
                                 key={index}
                                 data={item}
@@ -64,7 +73,7 @@ export default function Adopciones() {
             </div>
 
             <div className='pagination'>
-                <a className="btn-pagination active">1</a>
+                <a className="btn-pagination active">{page}</a>
                 <a className="btn-pagination">2</a>
                 <a className="btn-pagination">3</a>
                 <a className="btn-pagination">4</a>

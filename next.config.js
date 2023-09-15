@@ -30,7 +30,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'res.cloudinary.com',
+        hostname: 'fotos-petfinder-c13-21-m.s3.us-west-1.amazonaws.com',
       },
     ],
   },
