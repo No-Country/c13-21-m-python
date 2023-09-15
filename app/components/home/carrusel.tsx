@@ -12,7 +12,7 @@ import Link from "next/link";
 
 interface CardProps {
     title: string;
-    data: {
+    data: { items: [ {
         id: number;
         publication_date: string;
         city: string;
@@ -22,6 +22,8 @@ interface CardProps {
         image_publication: {
             url: string
         }
+        }
+    ]
     };
     link: string;
     lblname: boolean;
